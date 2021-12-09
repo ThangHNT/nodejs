@@ -1,9 +1,13 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000 
+const path = require('path');
+
+
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    var home = path.join(__dirname,'home.html');
+    res.sendFile(home);
 })
 
 app.listen(port, () => {
