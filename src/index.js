@@ -29,17 +29,17 @@ app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
 // connect to db
-const mongoose = require('mongoose');
-async function connect() {
-    try {
-        await mongoose.connect('mongodb+srv://thanghoang:hnt12345@cluster0.p4suv.mongodb.net/practice');
-        // await mongoose.connect('mongodb://localhost:27017/practice');
-        console.log('Connect successfully');
-    } catch (error) {
-        console.log('connection failed');
-    }
-}
-connect();
+// const mongoose = require('mongoose');
+// async function connect() {
+//     try {
+//         // await mongoose.connect('mongodb+srv://thanghoang:hnt12345@cluster0.p4suv.mongodb.net/practice');
+//         await mongoose.connect('mongodb://localhost:27017/practice');
+//         console.log('Connect successfully');
+//     } catch (error) {
+//         console.log('connection failed');
+//     }
+// }
+// connect();
 //-----------------------------------------------
 
 route(app);
