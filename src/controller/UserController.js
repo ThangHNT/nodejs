@@ -14,8 +14,8 @@ class UserController {
     login(req, res, next) {
         User.findOne({email: req.params.email}, function(err, user) {
             if(user == null){
-                // res.render('login-failed');
-                res.json(user);
+                res.render('Login-failed');
+                // res.json(user);
             }
             else {
                 res.redirect(`/home/${user._id}`);
