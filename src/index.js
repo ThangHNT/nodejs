@@ -40,11 +40,7 @@ async function connect() {
 connect();
 //-----------------------------------------------
 
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
-
+route(app);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
