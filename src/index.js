@@ -33,7 +33,7 @@ const mongoose = require('mongoose');
 async function connect() {
     try {
         const uri = 'mongodb://localhost:27017/practice'
-        await mongoose.connect(uri,{ maxPoolSize: 10000 } )
+        await mongoose.createConnection(uri,{ maxPoolSize: 10000 } )
         // await mongoose.connect('mongodb://localhost:27017/practice');
         console.log('Connect successfully');
     } catch (error) {
