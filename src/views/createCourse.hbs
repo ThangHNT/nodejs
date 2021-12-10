@@ -29,7 +29,6 @@
 
 <div class="container mt-4">
     <h2>Thêm khóa học mới
-        <small>(Chức năng chỉ dành cho admin)</small>
     </h2>
     <form id="form" method="post" action="store/{{userId}}" >
         <div class="form-group">
@@ -72,8 +71,8 @@
         var check = true;
         form.onsubmit = function(e) {
             
-            e.preventDefault();
-            {{!-- des.value.trim();
+            {{!-- e.preventDefault(); --}}
+            des.value.trim();
             for(let i = 0; i < input.length; i++) {
                 if(input[i].value.length == 0) {
                     check = false;
@@ -83,7 +82,7 @@
             if(des.value === '' || des.value === ' ' || check == false) {
                 e.preventDefault();
                 $('#modal').modal('show');
-            } --}}
+            }
         }
     })
 </script>
