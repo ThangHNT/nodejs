@@ -27,6 +27,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
+// connect to db
+const mongoose = require('mongoose');
+async function connect() {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/practice');
+        console.log('Connect successfully');
+    } catch (error) {
+        console.log('connection failed');
+    }
+}
+connect();
+//-----------------------------------------------
+
 app.get('/', (req, res) => {
     res.render('home');
 });
