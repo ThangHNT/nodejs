@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const User = new Schema (
     {
-        email : {type: String, required: true, maxLength:30},
-        courses : [{type: Schema.Types.ObjectId, ref : 'Course'}]
+        email : {type: String, required: true, maxLength:30}
     }
 )
 
