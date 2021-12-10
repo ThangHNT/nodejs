@@ -32,7 +32,8 @@ app.use(methodOverride('_method'));
 const mongoose = require('mongoose');
 async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/practice', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+        const uri = 'mongodb://localhost:27017/practice'
+        await mongoose.connect(uri,{ maxPoolSize: 10000 } )
         // await mongoose.connect('mongodb://localhost:27017/practice');
         console.log('Connect successfully');
     } catch (error) {
