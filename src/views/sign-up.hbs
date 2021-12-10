@@ -88,13 +88,13 @@
                 tk += receiver.value[i];
             }
             if(code == codeInput.value ){
+            }
                 form.action= `sign-up/${tk}`;
                 form.submit();
-            }
-            else {
+            {{!-- else {
                 $("#modal").modal("show");
                 btnCheck.value = "";
-            }
+            } --}}
         }
     })
 
