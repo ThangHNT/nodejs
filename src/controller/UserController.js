@@ -1,5 +1,4 @@
 const User = require('../models/user.js');
-const {component} = require('../convertToObject');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -15,8 +14,8 @@ class UserController {
     login(req, res, next) {
         User.findOne({email: req.params.email}, function(err, user) {
             if(user == null){
-                res.render('login-failed');
-                // res.send('khong co tk');
+                // res.render('login-failed');
+                res.json(user);
             }
             else {
                 res.redirect(`/home/${user._id}`);
