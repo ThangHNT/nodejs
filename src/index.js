@@ -32,8 +32,10 @@ app.use(methodOverride('_method'));
 const mongoose = require('mongoose');
 async function connect() {
     try {
-        // await mongoose.connect(process.env.MONGO_PROD_URI);
-        await mongoose.connect('mongodb://localhost:27017/practice');
+        await mongoose.connect(process.env.MONGODB_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true})
+        // await mongoose.connect('mongodb://localhost:27017/practice');
         console.log('Connect successfully');
     } catch (error) {
         console.log('connection failed');
