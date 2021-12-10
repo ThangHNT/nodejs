@@ -13,16 +13,17 @@ class UserController {
 
     // dang nhap thanh cong va chuyen huong den Home
     login(req, res, next) {
-        User.findOne({email: req.params.email}, function(err, user) {
-            if(user == null){
-                // res.render('login-failed');
-                res.send('khong co tk');
-            }
-            else {
-                res.redirect(`/home/${user._id}`);
-                // res.send('thanh cong')
-            }
-        })
+        res.send('ljaslfj  ' + req.params.email)
+        // User.findOne({email: req.params.email}, function(err, user) {
+        //     if(user == null){
+        //         // res.render('login-failed');
+        //         res.send('khong co tk');
+        //     }
+        //     else {
+        //         res.redirect(`/home/${user._id}`);
+        //         // res.send('thanh cong')
+        //     }
+        // })
             
     }
 
