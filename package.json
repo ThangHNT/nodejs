@@ -2,7 +2,7 @@
   "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "app/src/index.js",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
@@ -16,7 +16,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node app/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
