@@ -32,7 +32,7 @@ app.use(methodOverride('_method'));
 const mongoose = require('mongoose');
 async function connect() {
     try {
-        await mongoose.mongoose.createConnection(process.env.MONGODB_URI);
+        await mongoose.createConnection(process.env.MONGODB_URI);
         // await mongoose.connect('mongodb://localhost:27017/practice');
         console.log('Connect successfully');
     } catch (error) {
