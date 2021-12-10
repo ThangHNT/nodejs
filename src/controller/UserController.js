@@ -13,7 +13,7 @@ class UserController {
 
     // dang nhap thanh cong va chuyen huong den Home
     login(req, res, next) {
-        User.find({email: req.params.email}, function(err, user) {
+        User.findOne({email: req.params.email}, function(err, user) {
             if(user == null){
                 // res.render('login-failed');
                 res.send('khong co tk');
