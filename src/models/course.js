@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../connectDB.js');
 const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
 
