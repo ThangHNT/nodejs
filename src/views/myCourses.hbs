@@ -57,7 +57,7 @@
               <td>{{this.name}}</td>
               <td>{{getTimestamp this.createdAt}}</td>
               <td>{{getTimestamp this.updatedAt}}</td>
-              <td><a href="http://localhost:3000/courses/myCourses/edit/{{this._id}}">Sua</a></td>
+              <td><a href="/courses/myCourses/edit/{{this._id}}">Sua</a></td>
               <td><a href = "#" data-toggle="modal" data-id="{{this._id}}" data-target="#modal" >Xoa</a></td>
         </tr>
           {{else}}
@@ -105,7 +105,7 @@
           })
 
           btnDelete.onclick = function (){
-              deleteForm.action = "http://localhost:3000/courses/delete/" + id + "?_method=DELETE";
+              deleteForm.action = "/courses/delete/" + id + "?_method=DELETE";
               deleteForm.submit();
           }
       })

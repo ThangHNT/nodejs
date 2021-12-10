@@ -32,7 +32,7 @@ class CourseController {
         const userId = req.params.id;
         course.owner = userId;
         course.save();
-        res.redirect(`http://localhost:3000/courses/myCourses/${userId}`);
+        res.redirect(`/courses/myCourses/${userId}`);
 
     }
 

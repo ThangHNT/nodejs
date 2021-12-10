@@ -32,8 +32,8 @@ app.use(methodOverride('_method'));
 const mongoose = require('mongoose');
 async function connect() {
     try {
-        await mongoose.connect('mongodb+srv://thanghoang:hnt12345@cluster0.p4suv.mongodb.net/practice');
-        // await mongoose.connect('mongodb://localhost:27017/practice');
+        // await mongoose.connect('mongodb+srv://thanghoang:hnt12345@cluster0.p4suv.mongodb.net/practice');
+        await mongoose.connect('mongodb://localhost:27017/practice');
         console.log('Connect successfully');
     } catch (error) {
         console.log('connection failed');

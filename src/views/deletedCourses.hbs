@@ -103,14 +103,14 @@
 
           deleteBtn.click(function (e){
               e.preventDefault();
-              restoreForm.action = "http://localhost:3000/courses/delete/" + id +"/force?_method=DELETE";
+              restoreForm.action = "/courses/delete/" + id +"/force?_method=DELETE";
               restoreForm.submit();
           })
 
           restoreBtn.click(function (e){
               e.preventDefault();
               var courseId = $(this).data('id');
-              restoreForm.action = "http://localhost:3000/courses/" + courseId +"/restore?_method=PATCH";
+              restoreForm.action = "/courses/" + courseId +"/restore?_method=PATCH";
               restoreForm.submit();
           })
 
