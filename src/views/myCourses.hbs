@@ -19,8 +19,8 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Tai khoan</a>
-                <a class="dropdown-item" href="/">Dang xuat</a>
+                <a class="dropdown-item" href="#">Tài khoản</a>
+                <a class="dropdown-item" href="/">Đăng xuất</a>
             </div>
         </div>
     </div>
@@ -32,11 +32,11 @@
     <div class="row justify-content-between">
         <div class="mt-4">
             <h3>Khoa hoc cua toi</h3>
-            <a href="/courses/myCourses/trash/{{userId}}">Thung rac ({{count}})</a>
+            <a href="/courses/myCourses/trash/{{userId}}">Thùng rác ({{count}})</a>
         </div>
         <div class="mt-4">
           <a href="/courses/create/{{userId}}">
-              <button type="button" class="btn btn-primary">Them khoa hoc moi</button>
+              <button type="button" class="btn btn-primary">Thêm khóa học mới</button>
           </a>
         </div>
     </div>
@@ -62,8 +62,8 @@
         </tr>
           {{else}}
             <td colspan="5" class ="text-center">
-              Ban chua dang khoa hoc nao.
-              <a href="/courses/create/{{userId}}">Dang khoa hoc moi</a>
+              Bạn chưa đăng khóa học nào.
+              <a href="/courses/create/{{userId}}">Đăng khóa học mới</a>
             </td>
           {{/each}}
     </tbody>
@@ -76,7 +76,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p>Ban chac chan muon xoa khoa hoc ?
+        <p>Bạn chắc chắn muốn xóa khóa học này ?
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -84,9 +84,9 @@
       </div>
       <div class="modal-footer">
           <button id="btn-delete" type="button" class="btn btn-danger">
-              Co
+              Có
           </button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Khong</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
       </div>
     </div>
   </div>
