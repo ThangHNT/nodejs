@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+    <div class="container">
+        <a class="navbar-brand" href="#">Hoc lap trinh</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="sign-up">Đăng ký tài khoản khác</a>
+                <a class="dropdown-item" href="/home">Đăng nhập ngay</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <p>Dang ky thanh cong.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="/home/{{userId}}">
+                <button type="button" class="btn btn-primary" >Dang nhap ngay</button>
+            </a>
+            <a href="/account/sign-up">
+                <button type="button" class="btn btn-secondary" >Back</button>
+            </a>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded",function () {
+        setTimeout(() => {
+            $("#modal").modal("show");  
+        },400)
+    })
+</script>

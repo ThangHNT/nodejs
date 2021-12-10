@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+    <div class="container">
+        <a class="navbar-brand" href="#">Hoc lap trinh</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Getting Started <span class="sr-only">(current)</span></a>
+            </li>
+        </div>
+
+        <a href="sign-up">
+            <button type="button" class="btn btn-info" >Dang ky</button>
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h3>Dang nhap</h3>
+    <form id="form" method="post">
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control email" id="email" required >
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-send" required >Dang nhap</button>
+    </form>
+</div>
+
+
+<script >
+    document.addEventListener("DOMContentLoaded", function() {
+        const receiver = document.querySelector('#email');
+        const form = document.querySelector('#form');
+        const btnSend = document.querySelector('#btn-send');
+        btnSend.onclick = function() {
+            form.action = `login/${receiver.value}`;
+            form.submit();
+        }
+    })
+
+
+</script>

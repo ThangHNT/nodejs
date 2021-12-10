@@ -1,0 +1,112 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+    <div class="container">
+        <a class="navbar-brand" href="#">Hoc lap trinh</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/home/{{userId}}">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Tai khoan</a>
+                <a class="dropdown-item" href="/">Dang xuat</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+  <table class="table mt-4">
+    <div class="row justify-content-between">
+        <div class="mt-4">
+            <h3>Khoa hoc cua toi</h3>
+            <a href="/courses/myCourses/trash/{{userId}}">Thung rac ({{count}})</a>
+        </div>
+        <div class="mt-4">
+          <a href="/courses/create/{{userId}}">
+              <button type="button" class="btn btn-primary">Them khoa hoc moi</button>
+          </a>
+        </div>
+    </div>
+    <thead>
+        <tr>
+              <th scope="col">#</th>
+              <th scope="col">Course name</th>
+              <th scope="col">Created at</th>
+              <th scope="col">Updated at</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+          {{#each courses}}
+        <tr>
+              <th scope="row">{{sum @index 1}}</th>
+              <td>{{this.name}}</td>
+              <td>{{getTimestamp this.createdAt}}</td>
+              <td>{{getTimestamp this.updatedAt}}</td>
+              <td><a href="http://localhost:3000/courses/myCourses/edit/{{this._id}}">Sua</a></td>
+              <td><a href = "#" data-toggle="modal" data-id="{{this._id}}" data-target="#modal" >Xoa</a></td>
+        </tr>
+          {{else}}
+            <td colspan="5" class ="text-center">
+              Ban chua dang khoa hoc nao.
+              <a href="/courses/create/{{userId}}">Dang khoa hoc moi</a>
+            </td>
+          {{/each}}
+    </tbody>
+  </table>
+</div>
+
+{{!-- comfirm delete course --}}
+
+<div id="modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Ban chac chan muon xoa khoa hoc ?
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </p>
+      </div>
+      <div class="modal-footer">
+          <button id="btn-delete" type="button" class="btn btn-danger">
+              Co
+          </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Khong</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="deleteForm" method="post" ></form>
+
+<script>
+      document.addEventListener("DOMContentLoaded", function(){
+          var id;
+          var deleteForm = document.forms['deleteForm'];
+          var btnDelete = document.getElementById('btn-delete');
+          $('#modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) ;
+                id = button.data('id');
+          })
+
+          btnDelete.onclick = function (){
+              deleteForm.action = "http://localhost:3000/courses/delete/" + id + "?_method=DELETE";
+              deleteForm.submit();
+          }
+      })
+</script>
