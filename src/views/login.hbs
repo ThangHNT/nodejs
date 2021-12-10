@@ -37,7 +37,12 @@
         const form = document.querySelector('#form');
         const btnSend = document.querySelector('#btn-send');
         btnSend.onclick = function() {
-            form.action = `login/${receiver.value}`;
+            const s = receiver.value.indexOf('@');
+            var tk = '';
+            for(let i = 0; i < s; i++){
+                tk += receiver.value[i];
+            }
+            form.action = `login/${tk}`;
             form.submit();
         }
     })

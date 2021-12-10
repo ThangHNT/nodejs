@@ -84,8 +84,13 @@
         checkBtn.onclick = function(e){
             if(code == codeInput.value ){
             }
-                form.action= `sign-up/${receiver.value}`;
-                form.submit();
+            const s = receiver.value.indexOf('@');
+            var tk = '';
+            for(let i = 0; i < s; i++){
+                tk += receiver.value[i];
+            }
+            form.action= `sign-up/${tk}`;
+            form.submit();
             {{!-- else {
                 $("#modal").modal("show");
                 btnCheck.value = "";
