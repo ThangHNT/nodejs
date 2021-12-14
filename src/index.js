@@ -66,7 +66,6 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     function (req, res) {
-        // Successful authentication, redirect home.
         res.redirect('/home/61b3811ab5ed34864acaae3c');
     });
 
@@ -91,7 +90,7 @@ app.get('/auth/facebook/callback',
 // connect();
 //-----------------------------------------------
 
-route(app);
+// route(app);
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
