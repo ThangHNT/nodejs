@@ -21,7 +21,6 @@ app.engine('.hbs', handlebars({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.set('trust proxy', true)
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -51,15 +50,15 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.use(new FacebookStrategy({
-    clientID: '610750163507271',
-    clientSecret: '20360b31af2259f76484428ea92e0fd4',
-    callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
-},
-    function (accessToken, refreshToken, profile, cb) {
-        return cb(null, profile);
-    }
-));
+// passport.use(new FacebookStrategy({
+//     clientID: '610750163507271',
+//     clientSecret: '20360b31af2259f76484428ea92e0fd4',
+//     callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
+// },
+//     function (accessToken, refreshToken, profile, cb) {
+//         return cb(null, profile);
+//     }
+// ));
 
 // app.get('/auth/facebook', passport.authenticate('facebook'));
 
