@@ -50,24 +50,24 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-// passport.use(new FacebookStrategy({
-//     clientID: '610750163507271',
-//     clientSecret: '20360b31af2259f76484428ea92e0fd4',
-//     callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
-// },
-//     function (accessToken, refreshToken, profile, cb) {
-//         return cb(null, profile);
-//     }
-// ));
+passport.use(new FacebookStrategy({
+    clientID: '610750163507271',
+    clientSecret: '20360b31af2259f76484428ea92e0fd4',
+    callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
+},
+    function (accessToken, refreshToken, profile, cb) {
+        return cb(null, profile);
+    }
+));
 
-// app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-// app.get('/auth/facebook/callback',
-//     passport.authenticate('facebook', { failureRedirect: '/login' }),
-//     function (req, res) {
-//         // res.redirect('/home/61b3811ab5ed34864acaae3c');
-//         res.send('thanh cong');
-//     });
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function (req, res) {
+        // res.redirect('/home/61b3811ab5ed34864acaae3c');
+        res.send('thanh cong');
+    });
 
 
 
