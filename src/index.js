@@ -37,14 +37,29 @@ app.use(passport.initialize());
 passport.use(new FacebookStrategy({
     clientID: '610750163507271',
     clientSecret: '20360b31af2259f76484428ea92e0fd4',
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
+        return cb(null, profile);
   }
 ));
+
+app.get('/auth/facebook',passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/home');
+  });
+
+
+
+
+
+
+
+
 
 // connect to db
 // const mongoose = require('mongoose');
