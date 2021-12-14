@@ -61,14 +61,14 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+// app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function (req, res) {
-        // res.redirect('/home/61b3811ab5ed34864acaae3c');
-        res.send('thanh cong');
-    });
+// app.get('/auth/facebook/callback',
+//     passport.authenticate('facebook', { failureRedirect: '/login' }),
+//     function (req, res) {
+//         // res.redirect('/home/61b3811ab5ed34864acaae3c');
+//         res.send('thanh cong');
+//     });
 
 
 
