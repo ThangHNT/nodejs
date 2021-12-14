@@ -28,55 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 
-// ------------------- authenticate with fb ---------------------
-var passport = require('passport');
-var session = require('express-session');
-var FacebookStrategy = require('passport-facebook').Strategy;
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}))
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.use(new FacebookStrategy({
-    clientID: '610750163507271',
-    clientSecret: '20360b31af2259f76484428ea92e0fd4',
-    callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
-},
-    function (accessToken, refreshToken, profile, cb) {
-        return cb(null, profile);
-    }
-));
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function (req, res) {
-        // res.redirect('/home/61b3811ab5ed34864acaae3c');
-        res.send('thanh cong');
-    });
-
-
-
-
-
-
-
-
-
 // connect to db
 // const mongoose = require('mongoose');
 // async function connect() {
