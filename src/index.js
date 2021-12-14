@@ -28,27 +28,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 
-// authenticate with fb
-// var passport = require('passport');
-// var session = require('express-session');
-// var FacebookStrategy = require('passport-facebook').Strategy;
-// app.set('trust proxy', 1) // trust first proxy
-// app.use(session({
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: false }
-// }))
-// app.use(passport.initialize());
-// app.use(passport.session());
+// ------------------- authenticate with fb ---------------------
+var passport = require('passport');
+var session = require('express-session');
+var FacebookStrategy = require('passport-facebook').Strategy;
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
-// passport.serializeUser(function (user, done) {
-//     done(null, user);
-// });
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
 
-// passport.deserializeUser(function (user, done) {
-//     done(null, user);
-// });
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
 
 // passport.use(new FacebookStrategy({
 //     clientID: '610750163507271',
