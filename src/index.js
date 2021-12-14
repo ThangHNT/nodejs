@@ -59,7 +59,7 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.use('/auth/facebook', passport.authenticate('facebook'));
 
 app.use('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
