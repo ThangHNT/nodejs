@@ -1,20 +1,20 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000 
+const port = process.env.PORT || 3000
 const methodOverride = require('method-override');
 const route = require('./routes/main.js');
 const path = require('path');
 const handlebars = require('express-handlebars');
 
 
-app.engine('.hbs', handlebars({ 
-    extname: '.hbs' ,
+app.engine('.hbs', handlebars({
+    extname: '.hbs',
     helpers: {
-        sum (a,b) { return a + b; },
-        getTimestamp (pad) {
-            pad = (n,s=2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+        sum(a, b) { return a + b; },
+        getTimestamp(pad) {
+            pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
             const d = new Date();
-            return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth()+1)}/${pad(d.getFullYear(),4)}`;
+            return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         }
     }
 }));
@@ -25,33 +25,50 @@ app.set('trust proxy', true)
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({extended : true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+
+// authenticate with fb
 var passport = require('passport');
+var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
 
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
 
 passport.use(new FacebookStrategy({
     clientID: '610750163507271',
     clientSecret: '20360b31af2259f76484428ea92e0fd4',
     callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
+},
+    function (accessToken, refreshToken, profile, cb) {
         return cb(null, profile);
-  }
+    }
 ));
 
-app.get('/auth/facebook',passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/home');
-  });
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function (req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/home/61b3811ab5ed34864acaae3c');
+    });
 
 
 
@@ -76,5 +93,5 @@ app.get('/auth/facebook/callback',
 
 route(app);
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 })

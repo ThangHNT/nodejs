@@ -5,8 +5,7 @@ const passport = require('passport');
 function route(app) {
     app.use('/courses', courseRouter);
     app.use('/account',userRouter);
-    app.use('/home',siteRouter);
-    // app.use('/home/:id',passport.authenticate('facebook',{session:false}),siteRouter);
+    app.use('/home/:id',siteRouter);
     app.use('/', (req,res) => {res.render('gettingStarted')});
 }
 
