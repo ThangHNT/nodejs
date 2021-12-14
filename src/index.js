@@ -28,6 +28,24 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+app.use(passport.initialize());
+
+
+
+passport.use(new FacebookStrategy({
+    clientID: '610750163507271',
+    clientSecret: '20360b31af2259f76484428ea92e0fd4',
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
 // connect to db
 // const mongoose = require('mongoose');
 // async function connect() {
