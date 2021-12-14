@@ -61,11 +61,11 @@ passport.use(new FacebookStrategy({
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-// app.use('/auth/facebook/callback',
-//     passport.authenticate('facebook', { failureRedirect: '/login' }),
-//     function (req, res) {
-//         res.json({message: 'Facebook'});
-//     });
+app.use('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function (req, res) {
+        res.json({message: 'Facebook'});
+    });
 
 // connect to db
 // const mongoose = require('mongoose');
