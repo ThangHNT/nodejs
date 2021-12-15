@@ -56,7 +56,7 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'photos', 'email']
 },
     function (accessToken, refreshToken, profile, cb) {
-        return cb(err, profile);
+        return cb(null, profile);
     }
 ));
 
@@ -64,10 +64,10 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/account/login' }),
-    function (req, res) {
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function(req, res) {
         res.send(req.user.id);
-});
+    });
 
 
 // connect to db
