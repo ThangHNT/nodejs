@@ -66,7 +66,8 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     function(req, res) {
-        res.send(req.user.id);
+        const id = req.user.id;
+        res.redirect(`/home/${id}`);
     });
 
 
