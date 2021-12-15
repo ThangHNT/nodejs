@@ -40,7 +40,7 @@ function authenticate(app) {
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
             const id = req.user.id;
-            const user = new User({facebookId :id});
+            const user = new User({facebookId :id, email = ''});
             user.save();
             res.redirect(`/home/${id}`);
             
