@@ -64,7 +64,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     function (req, res) {
-        res.json({message: 'Facebook'});
+        res.json(passport.profile);
     });
 
 // connect to db
