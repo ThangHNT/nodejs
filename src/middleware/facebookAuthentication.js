@@ -1,9 +1,9 @@
 
-// ------------------- authenticate with fb ---------------------
+var passport = require('passport');
+var session = require('express-session');
+var FacebookStrategy = require('passport-facebook').Strategy;
+const User = require('../models/user.js');
 function authenticate(app) {
-    var passport = require('passport');
-    var session = require('express-session');
-    var FacebookStrategy = require('passport-facebook').Strategy;
     app.set('trust proxy', 1) // trust first proxy
     app.use(session({
       secret: 'keyboard cat',
@@ -29,7 +29,7 @@ function authenticate(app) {
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
-            return cb(null, profile);
+            return cb(null,profile);
         }
     ));
     
@@ -40,7 +40,8 @@ function authenticate(app) {
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
             const id = req.user.id;
-            res.redirect(`/home/${id}`);
+            // res.redirect(`/home/${id}`);
+            res.send(req.user);
         });
 }
 
