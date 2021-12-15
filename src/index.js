@@ -65,13 +65,9 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     function (req, res) {
-        res.json(req.user);
+        res.send(req.user.clientID);
     });
 
-app.get('/logout', (req, res, next) =>{
-    req.session.destroy();
-    res.send('logout');
-})
 
 // connect to db
 // const mongoose = require('mongoose');
