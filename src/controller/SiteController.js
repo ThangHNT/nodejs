@@ -4,21 +4,20 @@ const { multiComponents } = require('../convertToObject.js');
 class SiteController {
     home(req, res, next) {
         const url = req.baseUrl;
-        var id ;
+        var id = '';
         for(let i = 0; i < url.length; i++) {
             if(url[i] >= '0' && url[i] <= '9'){
                 id += url[i];
             }
         }
-        res.send('jlads'+ url);
-        // Course.find({owner: id})
-        //     .then((course) => {
-        //         res.render('home', {
-        //             userId : id,
-        //             course: multiComponents(course),
-        //         });
-        //     })
-        //     .catch(next);
+        Course.find({owner: id})
+            .then((course) => {
+                res.render('home', {
+                    userId : id,
+                    course: multiComponents(course),
+                });
+            })
+            .catch(next);
         
     }
 }
