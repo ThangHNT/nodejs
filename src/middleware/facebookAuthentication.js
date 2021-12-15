@@ -32,6 +32,7 @@ function authenticate(app) {
             var id = profile.id;
             const user = new User(id);
             user.save();
+            return cb(null, profile);
         }
     ));
     
