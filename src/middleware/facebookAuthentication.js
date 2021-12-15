@@ -29,7 +29,9 @@ function authenticate(app) {
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
-            return cb(null,profile);
+            var id = profile.id;
+            const user = new User(id);
+            user.save();
         }
     ));
     
