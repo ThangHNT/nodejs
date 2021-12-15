@@ -7,7 +7,6 @@ function route(app) {
     app.use('/account',userRouter);
     app.use('/home/:id',siteRouter);
     app.use('/', (req,res) => {res.render('gettingStarted')});
-    
 }
 
 module.exports = route;
