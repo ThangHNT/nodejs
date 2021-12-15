@@ -59,9 +59,9 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-app.use('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.use('/auth/facebook/callback',
+app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login' }),
     function (req, res) {
         res.json({message: 'Facebook'});
