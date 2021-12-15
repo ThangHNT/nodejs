@@ -68,6 +68,11 @@ app.get('/auth/facebook/callback',
         res.json(req.user);
     });
 
+app.get('/logout', (req, res, next) =>{
+    req.session.destroy();
+    res.send('logout');
+})
+
 // connect to db
 // const mongoose = require('mongoose');
 // async function connect() {
