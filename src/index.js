@@ -39,7 +39,7 @@ app.use(session({
   cookie: { secure: false }
 }))
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 
 passport.serializeUser(function (user, done) {
     done(null, user);
@@ -55,7 +55,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://courses-hnt.herokuapp.com/auth/facebook/callback"
 },
     function (accessToken, refreshToken, profile, cb) {
-        return cb(null, profile);
+        console.log(profile);
     }
 ));
 
