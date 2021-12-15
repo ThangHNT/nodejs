@@ -60,10 +60,10 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/account/login' }, { authType: 'reauthenticate'}),
+    passport.authenticate('facebook', { failureRedirect: '/account/login' }),
     function (req, res) {
         res.send(req.user.id);
 });
