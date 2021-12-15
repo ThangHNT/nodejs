@@ -10,7 +10,7 @@ class SiteController {
                 id += url[i];
             }
         }
-        res.send('jlads'+ id);
+        res.send('jlads'+ url);
         // Course.find({owner: id})
         //     .then((course) => {
         //         res.render('home', {
