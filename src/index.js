@@ -60,7 +60,8 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
+// app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/account/login' }),
