@@ -55,7 +55,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://courses-hnt.herokuapp.com/auth/facebook/callback"
 },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
+        res.json(profile);
     }
 ));
 
