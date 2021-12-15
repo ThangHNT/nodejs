@@ -10,14 +10,15 @@ class SiteController {
                 id += url[i];
             }
         }
-        Course.find({owner: id})
-            .then((course) => {
-                res.render('home', {
-                    userId : id,
-                    course: multiComponents(course),
-                });
-            })
-            .catch(next);
+        res.send('jlads'+ id);
+        // Course.find({owner: id})
+        //     .then((course) => {
+        //         res.render('home', {
+        //             userId : id,
+        //             course: multiComponents(course),
+        //         });
+        //     })
+        //     .catch(next);
         
     }
 }
