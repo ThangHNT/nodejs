@@ -4,7 +4,12 @@ const { multiComponents } = require('../convertToObject.js');
 class SiteController {
     home(req, res, next) {
         const url = req.baseUrl;
-        const id = url.slice(url.lastIndexOf('/') +1);
+        var id ;
+        for(let i = 0; i < url.length; i++) {
+            if(url[i] >= '0' && url[i] <= '9'){
+                id += url[i];
+            }
+        }
         Course.find({owner: id})
             .then((course) => {
                 res.render('home', {
