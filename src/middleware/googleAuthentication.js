@@ -2,6 +2,7 @@
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
 var passport = require('passport');
+const User = require('../models/user.js');
 
 function ggAthentication(app) {
     app.use(passport.initialize());
@@ -39,19 +40,19 @@ function ggAthentication(app) {
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res,next) {
         const id = req.user.id;
-            const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
-            res.send(fullName);
-            // User.findOne({facebookId: id}, function(err, user) {
-            //     if(user == null) {
-            //         const user = new User({facebookId :id, email : '', username : name});
-            //         user.save()
-            //             .then(() => {
-            //                 res.redirect(`/home/${user._id}`);
-            //             })
-            //             .catch(next);
-            //     }
-            //     else res.redirect(`/home/${user._id}`);
-            // })
+        const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
+        res.send(fullName);
+        User.findOne({googleId: id}, function(err, user) {
+            if(user == null) {
+                const user = new User({googleId :id, email : '', username : fullName});
+                user.save()
+                    .then(() => {
+                        res.redirect(`/home/${user._id}`);
+                    })
+                    .catch(next);
+            }
+            else res.redirect(`/home/${user._id}`);
+        })
     });
 }
 
