@@ -1,6 +1,7 @@
 
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
+var passport = require('passport');
 
 function ggAthentication(app) {
     app.use(passport.initialize());
@@ -20,7 +21,7 @@ function ggAthentication(app) {
     passport.deserializeUser(function (user, done) {
         done(null, user);
     });
-    
+
     passport.use(new GoogleStrategy({
         clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
         clientSecret: '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',
