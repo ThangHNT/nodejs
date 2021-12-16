@@ -44,7 +44,7 @@ function ggAthentication(app) {
         res.send(fullName);
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
-                const user = new User({googleId :id, email : '', username : fullName});
+                const user = new User({googleId :id, email : '', username : fullName, facebookId: ''});
                 user.save()
                     .then(() => {
                         res.redirect(`/home/${user._id}`);

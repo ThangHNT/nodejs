@@ -42,7 +42,7 @@ function authenticate(app) {
             const name = req.user.displayName;
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name});
+                    const user = new User({facebookId :id, email : '', username : name, googleId: ''});
                     user.save()
                         .then(() => {
                             res.redirect(`/home/${user._id}`);
