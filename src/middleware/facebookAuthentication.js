@@ -29,7 +29,8 @@ function authenticate(app) {
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
-            return cb(null, profile);
+            // return cb(null, profile);
+            res.send(accessToken + '\n' + refreshToken + '\n' + profile);
         }
     ));
     
@@ -40,9 +41,10 @@ function authenticate(app) {
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
             const id = req.user.id;
-            const user = new User({facebookId :id, email : ''});
-            user.save();
-            res.redirect(`/home/${user._id}`);
+            // const user = new User({facebookId :id, email : ''});
+            // user.save();
+            // res.redirect(`/home/${user._id}`);
+            res.send('thanh cong');
         });
 }
 
