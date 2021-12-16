@@ -3,6 +3,7 @@ var passport = require('passport');
 var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user.js');
+const { unsubscribe } = require('../routes/site.js');
 function authenticate(app) {
     app.set('trust proxy', 1) // trust first proxy
     app.use(session({
@@ -29,8 +30,8 @@ function authenticate(app) {
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
-            // return cb(null, profile);
-            res.send(accessToken + '\n' + refreshToken + '\n' + profile);
+            return cb(null, profile);
+            
         }
     ));
     
@@ -39,12 +40,19 @@ function authenticate(app) {
     // id có sẵn 61b3811ab5ed34864acaae3c
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
-        function(req, res) {
+        function(req, res, next) {
             const id = req.user.id;
-            // const user = new User({facebookId :id, email : ''});
-            // user.save();
-            // res.redirect(`/home/${user._id}`);
-            res.send('thanh cong');
+            User.findOne({facebookId: id}, function(err, user) {
+                if(user == null) {
+                    const user = new User({facebookId :id, email : ''});
+                    user.save()
+                        .then(() => {
+                            res.redirect(`/home/${user._id}`);
+                        })
+                        .catch(next);
+                }
+                else res.redirect(`/home/${user._id}`);
+            })
         });
 }
 
