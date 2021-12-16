@@ -25,7 +25,7 @@ function ggAthentication(app) {
     passport.use(new GoogleStrategy({
         clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
         clientSecret: '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',
-        callbackURL: "https://courses-hnt.herokuapp.com/auth/google/callback"
+        callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/google/callback"
         },
         function(accessToken, refreshToken, profile, cb) {
             return cb(null,profile);

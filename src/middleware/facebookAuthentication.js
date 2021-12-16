@@ -25,7 +25,7 @@ function authenticate(app) {
     passport.use(new FacebookStrategy({
         clientID: '610750163507271',
         clientSecret: '20360b31af2259f76484428ea92e0fd4',
-        callbackURL: "https://courses-hnt.herokuapp.com/auth/facebook/callback",
+        callbackURL: "https://hoclaptrinh-hnt.herokuapp.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'photos', 'email']
     },
         function (accessToken, refreshToken, profile, cb) {
