@@ -41,7 +41,6 @@ function ggAthentication(app) {
     function(req, res,next) {
         const id = req.user.id;
         const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
-        res.send(fullName);
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
                 const user = new User({googleId :id, email : '', username : fullName, facebookId: ''});
