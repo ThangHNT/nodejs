@@ -2,7 +2,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
 app.use(passport.initialize());
 app.use(passport.session());
-function ggAth(app) {
+function ggAthentication(app) {
     app.set('trust proxy', 1) // trust first proxy
     app.use(session({
         secret: 'keyboard cat',
@@ -10,6 +10,13 @@ function ggAth(app) {
         saveUninitialized: true,
         cookie: { secure: false }
     }))
+    passport.serializeUser(function (user, done) {
+        done(null, user);
+    });
+    
+    passport.deserializeUser(function (user, done) {
+        done(null, user);
+    });
     passport.use(new GoogleStrategy({
         clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
         clientSecret: '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',
@@ -21,7 +28,7 @@ function ggAth(app) {
     ));
 
     app.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile'] }));
+    passport.authenticate('google', { scope: ['profile'], session:false }));
 
     app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/login' }),
@@ -30,4 +37,4 @@ function ggAth(app) {
     });
 }
 
-module.exports = ggAth;
+module.exports = ggAthentication;

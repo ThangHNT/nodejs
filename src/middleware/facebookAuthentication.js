@@ -36,7 +36,6 @@ function authenticate(app) {
     
     // app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
     app.get('/auth/facebook', passport.authenticate('facebook', { session: false }));
-    // id có sẵn 61b3811ab5ed34864acaae3c
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res, next) {

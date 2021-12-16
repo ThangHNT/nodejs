@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000
 const methodOverride = require('method-override');
 const route = require('./routes/main.js');
 const fbAuthentication = require('./middleware/facebookAuthentication.js');
+const ggAthentication = require('./middleware/googleAuthentication.js');
 const path = require('path');
 const handlebars = require('express-handlebars');
 
@@ -42,6 +43,7 @@ app.use(methodOverride('_method'));
 //-----------------------------------------------
 
 fbAuthentication(app);
+ggAthentication(app);
 route(app);
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
