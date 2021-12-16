@@ -1,0 +1,33 @@
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var session = require("express-session");
+app.use(passport.initialize());
+app.use(passport.session());
+function ggAth(app) {
+    app.set('trust proxy', 1) // trust first proxy
+    app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false }
+    }))
+    passport.use(new GoogleStrategy({
+        clientID: '604856952366-efq4pjustjjib5chvsmcvofvcoko6qbt.apps.googleusercontent.com',
+        clientSecret: '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',
+        callbackURL: "https://courses-hnt.herokuapp.com/auth/google/callback"
+        },
+        function(accessToken, refreshToken, profile, cb) {
+            return cb(null,profile);
+        }
+    ));
+
+    app.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile'] }));
+
+    app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.json(req.user);
+    });
+}
+
+module.exports = ggAth;
