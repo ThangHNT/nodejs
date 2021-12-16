@@ -43,7 +43,7 @@ app.use(methodOverride('_method'));
 //-----------------------------------------------
 
 fbAuthentication(app);
-// ggAthentication(app);
+// ggAthentication(app)
 route(app);
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
