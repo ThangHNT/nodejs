@@ -30,7 +30,6 @@ function authenticate(app) {
     },
         function (accessToken, refreshToken, profile, cb) {
             return cb(null, profile);
-            
         }
     ));
     
