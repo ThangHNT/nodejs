@@ -1,6 +1,46 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+  
 .default-img {
     width: 100%;
     height: 230px;
-    
 }
 
+.form-login {
+    background-color: #2AD4D4;
+    width: 100%;
+    height: 90vh;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    border: 1px ridge #000;
+    background-color: #fff;
+    max-width: 360px;
+    height: 60vh;
+}
+
+h3 {
+    text-align: center;
+}
+
+.icon {
+    margin:0 12px 0 0;
+    font-size: 24px;
+}
+
+.btn-login {
+    max-width: 254px;
+    height: 44px;
+}
+
+.gg {
+    width: 100%;
+    margin-bottom: 24px;
+    background-color:#FFFAFA;
+}
