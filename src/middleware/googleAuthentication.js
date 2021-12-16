@@ -39,8 +39,8 @@ function ggAthentication(app) {
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res,next) {
         const id = req.user.id;
-            const name = req.user.name;
-            res.send(name.familyName + "   " + name.givenName);
+            const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
+            res.send(fullName);
             // User.findOne({facebookId: id}, function(err, user) {
             //     if(user == null) {
             //         const user = new User({facebookId :id, email : '', username : name});
