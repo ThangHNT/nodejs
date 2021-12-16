@@ -40,7 +40,7 @@ function ggAthentication(app) {
     function(req, res,next) {
         const id = req.user.id;
             const name = req.user.name;
-            console.log(name + " typeof name " + typeof name );
+            res.send(name + " typeof name " + typeof name);
             // User.findOne({facebookId: id}, function(err, user) {
             //     if(user == null) {
             //         const user = new User({facebookId :id, email : '', username : name});
