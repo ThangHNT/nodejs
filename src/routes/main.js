@@ -5,7 +5,7 @@ const userRouter = require('./user.js');
 function route(app) {
     // app.use('/courses', courseRouter);
     app.use('/courses', (req, res, next) => {
-        res.send('jlasjdl  ' + req.cookies);
+        res.json(req.cookies);
     });
     app.use('/account',userRouter);
     app.use('/home',siteRouter);
