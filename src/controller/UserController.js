@@ -56,8 +56,10 @@ class UserController {
     }
 
     myAccount(req, res, next) {
-        res.render('myAccount');
-        // res.json(req.user);
+        // res.render('myAccount', {
+        //     user : req.user
+        // });
+        res.send(req.user.photos[0].value);
     }
 }
 
