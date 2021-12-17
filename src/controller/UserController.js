@@ -52,7 +52,7 @@ class UserController {
     logout(req, res, next) {
         req.session.destroy();
         req.user = null;
-        res.json(req.user);
+        res.redirect('/login');
     }
 }
 
