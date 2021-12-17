@@ -32,10 +32,8 @@
         <div class="content-header">
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
-        {{#each user}}
         <div class="content-body mt-4">
-            <img src= `${user.photos[0].value}` class="rounded avatar" alt="avatar">
+            <img src= "{{user.photos[0].value}}" class="rounded avatar" alt="avatar">
         </div>
-        {{/each}}
     </div>
 </div>
