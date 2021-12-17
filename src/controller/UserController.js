@@ -50,10 +50,9 @@ class UserController {
     }
 
     logout(req, res, next) {
-        // req.session.destroy();
+        req.session.destroy();
         // req.user = null;
-        // res.json(req.user);
-        res.send('thanh cong');
+        res.json(req.user);
     }
 }
 
