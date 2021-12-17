@@ -56,10 +56,10 @@ class UserController {
     }
 
     myAccount(req, res, next) {
-        // res.render('myAccount', {
-        //     user : req.user
-        // });
-        res.json(req.user);
+        res.render('myAccount', {
+            user : req.user
+        });
+        // res.json(req.user);
     }
 }
 
