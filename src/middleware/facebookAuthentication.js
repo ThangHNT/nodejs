@@ -3,6 +3,8 @@ var passport = require('passport');
 var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user.js');
+var {setCookie} = require('./setCookie.js');
+
 function authenticate(app) {
     app.set('trust proxy', 1) // trust first proxy
     app.use(session({
@@ -40,6 +42,7 @@ function authenticate(app) {
         function(req, res, next) {
             const id = req.user.id;
             const name = req.user.displayName;
+            setCookie('userId',id,1);
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
                     const user = new User({facebookId :id, email : '', username : name, googleId: ''});
