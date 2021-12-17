@@ -8,7 +8,9 @@ function route(app) {
             return next();
         }   else res.render('Login-failed');
     } , courseRouter);
+
     app.use('/account',userRouter);
+    
     app.use('/home',(req, res, next) => {
         if(req.user) {
             return next();
