@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const session = require('express-session');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -48,7 +49,12 @@ class UserController {
         })
     }
 
-    
+    logout(req, res, next) {
+        // req.session.destroy();
+        // req.user = null;
+        // res.json(req.user);
+        res.send('thanh cong');
+    }
 }
 
 module.exports = new UserController;
