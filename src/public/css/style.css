@@ -44,3 +44,30 @@ h3 {
     margin-bottom: 24px;
     background-color:#eee;
 }
+
+.comment {
+    border: none;
+    border-bottom: 1px solid rgb(46, 44, 44);
+}
+
+.account {
+    display: flex;
+    height: 88vh;
+    width: 100%;
+    background: linear-gradient(120deg, #3ca7ee, #9b408f);
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    width: 400px;
+    height: 600px;
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+}
+
+
+
+
+
+

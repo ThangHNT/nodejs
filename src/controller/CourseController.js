@@ -2,14 +2,11 @@ const Course = require('../models/course.js');
 const User = require('../models/user.js');
 const { component } = require('../convertToObject.js');
 const {multiComponents} = require('../convertToObject.js');
-const { response } = require('express');
 class CourseController {
     courseDetail(req, res, next) {
-        const id = req.params.id;
         Course.findOne({ slug: req.params.slug })
             .then((course) => {
                 res.render('courseDetail', {
-                    userId: id,
                     course: component(course),
                 });
             })
@@ -105,19 +102,6 @@ class CourseController {
     restore(req, res, next){
         Course.restore({_id : req.params.id})
             .then(() => res.redirect('back'))
-            .catch(next);
-    }
-
-    courseAvailable(req, res, next){
-        const url = req.originalUrl;
-        const userId = req.originalUrl.slice(url.lastIndexOf('/')+1);
-        Course.find({})
-            .then((course) => {
-                res.render('home', {
-                    userId : userId,
-                    course: multiComponents(course),
-                });
-            })
             .catch(next);
     }
 

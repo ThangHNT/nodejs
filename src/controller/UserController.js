@@ -54,6 +54,13 @@ class UserController {
         req.user = null;
         res.redirect('/login');
     }
+
+    myAccount(req, res, next) {
+        // res.render('myAccount', {
+        //     user : req.user
+        // });
+        res.json(req.user);
+    }
 }
 
 module.exports = new UserController;

@@ -8,7 +8,6 @@ router.patch('/:id/restore',courseController.restore);
 router.get('/myCourses/trash',courseController.trash);
 router.delete('/delete/:id/force',courseController.deleteForce);
 router.delete('/delete/:id',courseController.delete);
-router.get('/available', courseController.courseAvailable);
 router.get('/myCourses', courseController.myCourses);
 router.post('/create/store', courseController.storeCourse);
 router.get('/create', courseController.createCourse);
