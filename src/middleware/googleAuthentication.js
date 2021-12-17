@@ -42,7 +42,7 @@ function ggAthentication(app) {
     function(req, res,next) {
         const id = req.user.id;
         const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
-        setCookie('userId',id,1);
+        setCookie('userId',`${id}`,5);
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
                 const user = new User({googleId :id, email : '', username : fullName, facebookId: ''});

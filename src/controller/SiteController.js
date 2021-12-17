@@ -1,5 +1,4 @@
 const Course = require('../models/course.js');
-const User = require('../models/user.js');
 const { multiComponents } = require('../convertToObject.js');
 class SiteController {
     home(req, res, next) {
