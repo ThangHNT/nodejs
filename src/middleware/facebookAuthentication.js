@@ -39,20 +39,20 @@ function authenticate(app) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res, next) {
-            // const id = req.user.id;
-            // const name = req.user.displayName;
-            // User.findOne({facebookId: id}, function(err, user) {
-            //     if(user == null) {
-            //         const user = new User({facebookId :id, email : '', username : name, googleId: ''});
-            //         user.save()
-            //             .then(() => {
-            //                 res.redirect(`/home`);
-            //             })
-            //             .catch(next);
-            //     }
-            //     else res.redirect(`/home`);
-            // })
-            res.json(req.user);
+            const id = req.user.id;
+            const name = req.user.displayName;
+            User.findOne({facebookId: id}, function(err, user) {
+                if(user == null) {
+                    const user = new User({facebookId :id, email : '', username : name, googleId: ''});
+                    user.save()
+                        .then(() => {
+                            res.redirect(`/home`);
+                        })
+                        .catch(next);
+                }
+                else res.redirect(`/home`);
+            })
+            // res.json(req.user);
         });
 }
 
