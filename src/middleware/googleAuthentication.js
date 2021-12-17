@@ -3,7 +3,6 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
 var passport = require('passport');
 const User = require('../models/user.js');
-var {setCookie} = require('./setCookie.js');
 
 function ggAthentication(app) {
     app.use(passport.initialize());
@@ -42,7 +41,6 @@ function ggAthentication(app) {
     function(req, res,next) {
         const id = req.user.id;
         const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
-        setCookie('userId',`${id}`,5);
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
                 const user = new User({googleId :id, email : '', username : fullName, facebookId: ''});
