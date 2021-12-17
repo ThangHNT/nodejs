@@ -45,11 +45,11 @@ function authenticate(app) {
                     const user = new User({facebookId :id, email : '', username : name, googleId: ''});
                     user.save()
                         .then(() => {
-                            res.redirect(`/home/${user._id}`);
+                            res.redirect(`/home`);
                         })
                         .catch(next);
                 }
-                else res.redirect(`/home/${user._id}`);
+                else res.redirect(`/home`);
             })
         });
 }

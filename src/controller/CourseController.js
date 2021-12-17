@@ -32,14 +32,14 @@ class CourseController {
         const userId = req.params.id;
         course.owner = userId;
         course.save();
-        res.redirect(`/courses/myCourses/${userId}`);
+        res.redirect(`/courses/myCourses`);
 
     }
 
     // tao view cho ds khoa hoc cua toi
     myCourses(req, res, next){
         const id = req.params.id;
-        Promise.all([Course.find({owner: id}),Course.countDocumentsDeleted()])
+        Promise.all([Course.find(),Course.countDocumentsDeleted()])
             .then(([courses,count]) => {
                 res.render('myCourses',{
                     count,

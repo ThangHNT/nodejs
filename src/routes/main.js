@@ -5,7 +5,7 @@ const userRouter = require('./user.js');
 function route(app) {
     app.use('/courses', courseRouter);
     app.use('/account',userRouter);
-    app.use('/home/:id',siteRouter);
+    app.use('/home',siteRouter);
     app.use('/', (req,res) => {res.render('gettingStarted')});
 }
 

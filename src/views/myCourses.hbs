@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/home/{{userId}}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
         </div>
 
@@ -32,10 +32,10 @@
     <div class="row justify-content-between">
         <div class="mt-4">
             <h3>Khoa hoc cua toi</h3>
-            <a href="/courses/myCourses/trash/{{userId}}">Thùng rác ({{count}})</a>
+            <a href="/courses/myCourses/trash">Thùng rác ({{count}})</a>
         </div>
         <div class="mt-4">
-          <a href="/courses/create/{{userId}}">
+          <a href="/courses/create">
               <button type="button" class="btn btn-primary">Thêm khóa học mới</button>
           </a>
         </div>
@@ -58,12 +58,12 @@
               <td>{{getTimestamp this.createdAt}}</td>
               <td>{{getTimestamp this.updatedAt}}</td>
               <td><a href="/courses/myCourses/edit/{{this._id}}">Sua</a></td>
-              {{!-- <td><a href = "#" data-toggle="modal" data-id="{{this._id}}" data-target="#modal" >Xoa</a></td> --}}
+              <td><a href = "#" data-toggle="modal" data-id="{{this._id}}" data-target="#modal" >Xoa</a></td>
         </tr>
           {{else}}
             <td colspan="5" class ="text-center">
               Bạn chưa đăng khóa học nào.
-              <a href="/courses/create/{{userId}}">Đăng khóa học mới</a>
+              <a href="/courses/create">Đăng khóa học mới</a>
             </td>
           {{/each}}
     </tbody>

@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/home/{{userId}}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
         </div>
 
@@ -20,7 +20,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="#">Tài khoản</a>
-                <a class="dropdown-item" href="/courses/myCourses/{{userId}}">Khóa học cuả tôi</a>
+                <a class="dropdown-item" href="/courses/myCourses">Khóa học cuả tôi</a>
                 <a class="dropdown-item" href="/login">Dăng xuất</a>
             </div>
         </div>
@@ -30,7 +30,7 @@
 <div class="container mt-4">
     <h2>Thêm khóa học mới
     </h2>
-    <form id="form" method="post" action="store/{{userId}}" >
+    <form id="form" method="post" action="store" >
         <div class="form-group">
             <label for="">Tên khóa học</label>
             <input type="text"  class="form-control" name = "name">
@@ -43,7 +43,6 @@
 
         <div class="form-group">
             <label for="">VideoId
-                <small> (Video đc nhúng từ youtube nên cần nhập đúng id để hiển thị)</small>
             </label>
             <input type="text"  id="videoId" class="form-control" name ="videoId">
         </div>

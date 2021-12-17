@@ -46,11 +46,11 @@ function ggAthentication(app) {
                 const user = new User({googleId :id, email : '', username : fullName, facebookId: ''});
                 user.save()
                     .then(() => {
-                        res.redirect(`/home/${user._id}`);
+                        res.redirect(`/home`);
                     })
                     .catch(next);
             }
-            else res.redirect(`/home/${user._id}`);
+            else res.redirect(`/home`);
         })
     });
 }
