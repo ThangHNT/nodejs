@@ -6,13 +6,14 @@ function route(app) {
     app.use('/courses',(req, res, next) => {
         if(req.user) {
             return next();
-        }
-        else {
-            res.status(404).render('Login-failed');
-        }
+        }   else res.render('Login-failed');
     } , courseRouter);
     app.use('/account',userRouter);
-    app.use('/home',siteRouter);
+    app.use('/home',(req, res, next) => {
+        if(req.user) {
+            return next();
+        }   else res.render('Login-failed');
+    },siteRouter);
     app.use('/', (req,res) => {res.render('gettingStarted')});
 }
 
