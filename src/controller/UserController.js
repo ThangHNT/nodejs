@@ -57,7 +57,8 @@ class UserController {
 
     myAccount(req, res, next) {
         res.render('myAccount', {
-            user : req.user
+            user : req.user,
+            avatar = req.user.photos[0].value
         });
     }
 }
