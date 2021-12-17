@@ -6,7 +6,6 @@ const route = require('./routes/main.js');
 const fbAuthentication = require('./middleware/facebookAuthentication.js');
 const ggAthentication = require('./middleware/googleAuthentication.js');
 const path = require('path');
-const cookieParser = require('cookie-parser')
 const handlebars = require('express-handlebars');
 
 
@@ -29,7 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(cookieParser());
 
 // connect to db
 // const mongoose = require('mongoose');
