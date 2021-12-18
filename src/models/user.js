@@ -9,7 +9,6 @@ const User = new Schema (
         googleId: {type: String, default: ''},
         email : {type: String, default: ''},
         authType : {type: String, maxLength:30, required: true},
-        age : {type : Number},
         gender : {type: String, maxLength:10, default: ''},
         addresses : {type: String, maxLength:100, default:''},
         avatar : {type: String, default: ''},

@@ -29,11 +29,42 @@
 
 <div class="container account mt-4">
     <div class="content container">
-        <div class="content-header">
+        <div class="content-header mt-4">
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
         <div class="content-body mt-4">
-            {{!-- <img src= "" class="rounded avatar" alt="avatar"> --}}
+            <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
+            <div class="basic-info mt-4">
+                <div class = "user-name">
+                    <p><i class="fas fa-user-circle"></i>
+                        <strong>User name: </strong> {{user.username}}
+                    </p>
+                </div>
+                <div class = "gender">
+                    <p>
+                        <i class="fas fa-venus-mars"></i>
+                        <strong>Gender : </strong> {{user.gender}}
+                    </p>
+                </div>
+                <div class = "dateofbirth">
+                    <p>
+                        <i class="fas fa-birthday-cake"></i>
+                        <strong>Date of Birth : </strong> {{user.dateofbirth}}
+                    </p>
+                </div>
+                <div class = "address">
+                    <p>
+                        <i class="fas fa-address-card"></i>
+                        <strong>Address : </strong> {{user.address}}
+                    </p>
+                </div>
+                <div class = "email">
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <strong>Email : </strong> {{user.email}}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -70,7 +70,7 @@ class UserController {
                 })
             });
         }
-        
+        // res.render('myAccount');
     }
 }
 
