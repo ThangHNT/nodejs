@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const User = new Schema (
     {
         username : {type: String, maxLength:30 , required: true},
-        facebookId :{type: String},
-        googleId: {type: String},
+        facebookId :{type: String, default: ''},
+        googleId: {type: String, default: ''},
         email : {type: String, default: ''},
         authType : {type: String, maxLength:30, required: true},
         age : {type : Number},
