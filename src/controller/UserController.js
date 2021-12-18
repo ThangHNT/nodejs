@@ -61,7 +61,7 @@ class UserController {
         if(provider == 'facebook') {
             User.findOne({facebookId: id}, function(err, user) {
                 return res.render('myAccount', {
-                    user,
+                    user : component(user)
                 })
             })
         } else {
