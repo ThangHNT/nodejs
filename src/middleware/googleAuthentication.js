@@ -41,9 +41,11 @@ function ggAthentication(app) {
     function(req, res,next) {
         const id = req.user.id;
         const fullName = req.user.name.familyName + ' ' + req.user.name.givenName;
+        const avatar = req.user.photos[0].value;
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
-                const user = new User({googleId :id, email : '', username : fullName, facebookId: '',authType: 'google'});
+                const user = new User({googleId :id, email : '', username : fullName, facebookId: '',authType: 'google',
+                    age: 1,gender: 'male',dateOfBirth : Date.now(), addresses: 'nam dinh', avatar : avatar});
                 user.save()
                     .then(() => {
                         res.redirect(`/home`);
