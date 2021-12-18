@@ -4,15 +4,16 @@ const Schema = mongoose.Schema;
 
 const User = new Schema (
     {
-        username : {type: String, maxLength:30 },
+        username : {type: String, maxLength:30 , required: true},
         facebookId :{type: String},
         googleId: {type: String},
-        email : {type: String},
-        authType : {type: String, maxLength:30},
+        email : {type: String, default: ''},
+        authType : {type: String, maxLength:30, required: true},
         age : {type : Number},
-        gender : {type: String, maxLength:10},
-        addresses : {type: String, maxLength:100},
-        avatar : {type: String},
+        gender : {type: String, maxLength:10, default: ''},
+        addresses : {type: String, maxLength:100, default:''},
+        avatar : {type: String, default: ''},
+        dateOfBirth : {type: Date},
     }
 )
 
