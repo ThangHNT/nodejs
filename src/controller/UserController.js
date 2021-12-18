@@ -58,7 +58,7 @@ class UserController {
         const provider = req.user.provider;
         var id = req.user.id;
         var user;
-        if(provider == 'facebookId') {
+        if(provider == 'facebook') {
             user = User.findOne({facebookId: id});
         } else {
             user = User.findOne({googleId: id});
