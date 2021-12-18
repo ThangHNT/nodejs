@@ -66,7 +66,7 @@ class UserController {
         // res.render('myAccount', {
             
         // });
-        res.send('thanh cong' );
+        res.send('thanh cong' + user);
     }
 }
 
