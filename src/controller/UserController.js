@@ -56,10 +56,12 @@ class UserController {
     }
 
     myAccount(req, res, next) {
-        res.render('myAccount', {
-            user : req.user,
-            avatar : req.user.photos[0].value
-        });
+        const avatar = req.user.photos[0].value;
+        // const name = 
+        // res.render('myAccount', {
+        //     avatar,
+        // });
+        res.json(req.user);
     }
 }
 
