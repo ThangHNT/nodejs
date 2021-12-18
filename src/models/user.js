@@ -12,7 +12,6 @@ const User = new Schema (
         age : {type : Number},
         gender : {type: String, maxLength:10},
         addresses : {type: String, maxLength:100},
-        dateOfBirth : {type: Date},
         avatar : {type: Image},
     }
 )
