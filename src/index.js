@@ -42,7 +42,7 @@ app.use(methodOverride('_method'));
 // connect();
 //-----------------------------------------------
 
-fbAuthentication(app);
+// fbAuthentication(app);
 ggAthentication(app);
 route(app);
 app.listen(port, () => {
