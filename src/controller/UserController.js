@@ -58,10 +58,11 @@ class UserController {
         const provider = req.user.provider;
         var id = '';
         id = (provider == 'facebook') ? 'facebookId' : 'googleId';
+        const user = User.findOne({id: facebookId});
         // res.render('myAccount', {
             
         // });
-        res.send('jsaldkj ' + id);
+        res.json(user);
     }
 }
 
