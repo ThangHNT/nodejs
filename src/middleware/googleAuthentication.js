@@ -45,7 +45,7 @@ function ggAthentication(app) {
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
                 const user = new User({googleId :id, email : '', username : fullName, facebookId: '',authType: 'google',
-                    age: 1,gender: 'male', addresses: 'nam dinh', avatar : avatar});
+                     avatar : avatar});
                 user.save()
                     .then(() => {
                         res.redirect(`/home`);
