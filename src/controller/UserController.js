@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const {component} = require('../convertToObject');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -66,7 +67,7 @@ class UserController {
         } else {
             User.findOne({googleId: id}, function(err, user) {
                 return res.render('myAccount', {
-                    user,
+                    user : component(user)
                 })
             });
         }
