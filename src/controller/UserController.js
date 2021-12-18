@@ -1,5 +1,4 @@
 const User = require('../models/user.js');
-const session = require('express-session');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -56,12 +55,13 @@ class UserController {
     }
 
     myAccount(req, res, next) {
-        const avatar = req.user.photos[0].value;
-        // const name = 
+        const provider = req.user.provider;
+        var id = '';
+        id = (provider == 'facebook') ? 'facebookId' : 'googleId';
         // res.render('myAccount', {
-        //     avatar,
+            
         // });
-        res.json(req.user);
+        res.send('jsaldkj ' + id);
     }
 }
 
