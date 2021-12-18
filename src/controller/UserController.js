@@ -57,16 +57,18 @@ class UserController {
     myAccount(req, res, next) {
         const provider = req.user.provider;
         var id = req.user.id;
-        var user;
         if(provider == 'facebook') {
-            user = User.findOne({facebookId: id});
+            User.findOne({facebookId: id}, function(err, user) {
+                return res.json(user);
+            })
         } else {
-            user = User.findOne({googleId: id});
+            User.findOne({googleId: id}, function(err, user) {
+                return res.json(user);
+            });
         }
         // res.render('myAccount', {
             
         // });
-        res.send('thanh cong' + user);
     }
 }
 
