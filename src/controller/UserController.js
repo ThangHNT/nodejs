@@ -116,6 +116,16 @@ class UserController {
                 res.send('co loi');
             }
             var arrayFiles = files[""];
+            if(arrayFiles.length > 0) {
+                var fileName =  [];
+                arrayFiles.forEach((file) => {
+                    fileName.push(file.path);
+                })
+                res.json({
+                    data: fileName,
+                    numberOfImages : fileName.length
+                })
+            }
         })
     }
 
