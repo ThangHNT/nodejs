@@ -39,6 +39,10 @@ h3 {
     height: 44px;
 }
 
+.form-login{
+    background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+}
+
 .gg {
     width: 100%;
     margin-bottom: 24px;
@@ -66,6 +70,13 @@ h3 {
     border-radius: 12px;
 }
 
+.content-update {
+    width: 500px;
+    height: 600px;
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+}
+
 .content-body{
     display: flex;
     justify-content: center;
@@ -76,6 +87,21 @@ h3 {
 .avatar {
     width: 150px;
     height: 150px;
+}
+
+.content-body-update{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.form-update {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
 }
 
 

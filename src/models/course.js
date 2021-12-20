@@ -11,7 +11,7 @@ const Course = new Schema(
         img: { type: String, required: true },
         videoId: { type: String, required: true },
         slug: { type: String, slug:'name' , default: 'unknown', unique: true },
-        owner: {type: Schema.Types.ObjectId, ref: 'User'}
+        owner: {type: Schema.Types.ObjectId, ref: 'User'},
     },
     {
         timestamps: true,

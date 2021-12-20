@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+    <div class="container">
+        <a class="navbar-brand" href="#">Hoc lap trinh</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+        </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Action
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Tài khoản</a>
+                <a class="dropdown-item" href="/account/logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container account mt-4">
+    <div class="content-update container">
+        <div class="content-header mt-4">
+            <h4 style="text-align:center">Thông tin của bạn</h4>
+        </div>
+        <div class="content-body-update mt-4">
+            <form class="form-update" action="/account/uploadData" method="post" enctype="multipart/form-data">
+                <div class="field-update">
+                    {{#if img}}
+                        <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle avatar" alt="avatar">
+                        {{else}}
+                        <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
+                    {{/if}}
+
+                    <input type="file" name ="avatar">
+                </div>
+                <div class="field-update mt-4">
+                    <label for="username"><strong>User name</strong></label>
+                    <input type="text" id = "username" class="input-update">
+                </div>
+                <div class="field-update mt-4">
+                    <label for="gender"><strong>Gender</strong></label>
+                    <select class="">
+                        <option> Giới tính </option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                    </select>
+                </div>
+                <div class="field-update mt-4">
+                    <label for="dateOfBirth"><strong>Date of birth</strong></label>
+                    <input type="date" id = "dateOfBirth" class="input-update">
+                </div>
+                <div class="field-update mt-4">
+                    <label for="email"><strong>Email</strong></label>
+                    <input type="text" id = "email" class="input-update">
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+</div>

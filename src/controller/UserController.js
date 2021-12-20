@@ -1,5 +1,8 @@
 const User = require('../models/user.js');
 const {component} = require('../convertToObject');
+const Img = require('../models/img.js');
+const fs = require('fs');
+const path = require('path');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -49,29 +52,73 @@ class UserController {
         })
     }
 
+    // đăng xuất
     logout(req, res, next) {
         req.session.destroy();
         req.user = null;
         res.redirect('/login');
     }
 
+    // xem thông tin tài khoản
     myAccount(req, res, next) {
-        const provider = req.user.provider;
-        var id = req.user.id;
-        if(provider == 'facebook') {
-            User.findOne({facebookId: id}, function(err, user) {
-                return res.render('myAccount', {
-                    user : component(user)
-                })
+        // const provider = req.user.provider;
+        // var id = req.user.id;
+        // if(provider == 'facebook') {
+        //     User.findOne({facebookId: id}, function(err, user) {
+        //         return res.render('myAccount', {
+        //             user : component(user)
+        //         })
+        //     })
+        // } else {
+        //     User.findOne({googleId: id}, function(err, user) {
+        //         return res.render('myAccount', {
+        //             user : component(user)
+        //         })
+        //     });
+        // }
+        res.render('myAccount');
+    }
+
+    // view chỉnh sửa thông tin cá nhân
+    updateProfile(req, res, next) {
+        res.render('updateProfile');
+    }
+
+    // submit form chỉnh sửa thông tin cá nhân
+    uploadData(req, res, next) {
+        var img = fs.readFileSync(req.file.path);   // lấy đg dẫn file ảnh
+        var encode_img = img.toString('base64');    // chuyển về dạng base64
+        const buffer = Buffer.from(encode_img,'base64');    // cho ảnh vào bufer
+        var final_img = {                           // tạo obj Img để lưu vào db
+            name: req.file.originalname,
+            img : {
+                contentType:req.file.mimetype,
+                data:img,
+                image: buffer
+            }
+        };
+        const image = new Img(final_img);
+        image.save() 
+            .then(() => {
+                res.redirect(`/account/uploaded/${image._id}`)  
             })
-        } else {
-            User.findOne({googleId: id}, function(err, user) {
-                return res.render('myAccount', {
-                    user : component(user)
+            .catch(next);
+    }
+
+    // sau khi cập nhật dữ liệu 
+    updatedData(req, res, next) {   
+        Img.findOne({_id : req.params.id}, (err, item) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send('An error occurred', err);
+            }
+            else {
+                const img = item.img.data.toString("base64");
+                res.render('myAccount', {
+                    img,
                 })
-            });
-        }
-        // res.render('myAccount');
+            }
+        });
     }
 }
 
