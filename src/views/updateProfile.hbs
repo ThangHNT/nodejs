@@ -36,12 +36,12 @@
             <form class="form-update" action="/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if img}}
-                        <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle avatar" alt="avatar">
+                        <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle" alt="avatar">
                         {{else}}
                         <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
 
-                    <input type="file" name ="avatar">
+                    <input type="file" name ="avatar" class="btn-file">
                 </div>
                 <div class="field-update mt-4">
                     <label for="username"><strong>User name</strong></label>
@@ -68,3 +68,12 @@
         </div>
     </div>
 </div>
+
+{{!-- <script>
+    var form = document.querySelector('.form-update');
+    let img = document.querySelector('.btn-file');
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        console.log(img.value);
+    }
+</script> --}}

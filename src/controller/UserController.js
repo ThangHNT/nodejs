@@ -86,68 +86,41 @@ class UserController {
     // submit form chỉnh sửa thông tin cá nhân
     uploadData(req, res, next) {
         // dung voi multer
-        // var img = fs.readFileSync(req.file.path);   // lấy đg dẫn file ảnh
-        // var encode_img = img.toString('base64');    // chuyển về dạng base64
-        // const buffer = Buffer.from(encode_img,'base64');    // cho ảnh vào bufer
-        // var final_img = {                           // tạo obj Img để lưu vào db
-        //     name: req.file.originalname,
-        //     img : {
-        //         contentType:req.file.mimetype,
-        //         data:img,
-        //         image: buffer
-        //     }
-        // };
-        // const image = new Img(final_img);
-        // image.save() 
-        //     .then(() => {
-        //         res.redirect(`/account/uploaded/${image._id}`)  
-        //     })
-        //     .catch(next);
+        var img = fs.readFileSync(req.file.path);   // lấy đg dẫn file ảnh
+        var encode_img = img.toString('base64');    // chuyển về dạng base64
+        const buffer = Buffer.from(encode_img,'base64');    // cho ảnh vào bufer
+        var final_img = {                           // tạo obj Img để lưu vào db
+            name: req.file.originalname,
+            img : {
+                contentType:req.file.mimetype,
+                data:img,
+                image: buffer
+            }
+        };
+        const image = new Img(final_img);
+        image.save() 
+            .then(() => {
+                res.redirect(`/account/uploaded/${image._id}`)  
+            })
+            .catch(next);
 
-        // dung voi formidable
-        // var formidable = require('formidable');
-        // var form = new formidable.IncomingForm();
-        // form.uploadDir = "./src/public/uplpoads";
-        // form.keepExtensions = true;
-        // form.maxFieldsSize = 1024*1024;
-        // form.multiples = true;
-        // form.parse(req,(err,fields, files) => {
-        //     if(err) {
-        //         res.json({mess: 'co loi'})
-        //     }
-        //     var arrayFiles = files[""];
-        //     if(arrayFiles.length > 0) {
-        //         var fileName =  [];
-        //         arrayFiles.forEach((file) => {
-        //             fileName.push(file.path);
-        //         })
-        //         res.json({
-        //             data: fileName,
-        //             numberOfImages : fileName.length
-        //         })
-        //     }
-        //     else {
-        //         res.json({mess: 'co loi'})
-        //     }
-        // })
-        res.redirect('/account/uploaded/46432131');
     }
 
     // sau khi cập nhật dữ liệu 
     updatedData(req, res, next) {   
-        // Img.findOne({_id : req.params.id}, (err, item) => {
-        //     if (err) {
-        //         console.log(err);
-        //         res.status(500).send('An error occurred', err);
-        //     }
-        //     else {
-        //         const img = item.img.data.toString("base64");
-        //         res.render('myAccount', {
-        //             img,
-        //         })
-        //     }
-        // });
-        res.json(req.file);
+        Img.findOne({_id : req.params.id}, (err, item) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send('An error occurred', err);
+            }
+            else {
+                const img = item.img.data.toString("base64");
+                res.render('myAccount', {
+                    img,
+                })
+            }
+        });
+        // res.json(req.file);
     }
 }
 
