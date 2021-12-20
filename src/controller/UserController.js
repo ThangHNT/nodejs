@@ -105,31 +105,32 @@ class UserController {
         //     .catch(next);
 
         // dung voi formidable
-        var formidable = require('formidable');
-        var form = new formidable.IncomingForm();
-        form.uploadDir = "./src/public/uplpoads";
-        form.keepExtensions = true;
-        form.maxFieldsSize = 1024*1024;
-        form.multiples = true;
-        form.parse(req,(err,fields, files) => {
-            if(err) {
-                res.json({mess: 'co loi'})
-            }
-            var arrayFiles = files[""];
-            if(arrayFiles.length > 0) {
-                var fileName =  [];
-                arrayFiles.forEach((file) => {
-                    fileName.push(file.path);
-                })
-                res.json({
-                    data: fileName,
-                    numberOfImages : fileName.length
-                })
-            }
-            else {
-                res.json({mess: 'co loi'})
-            }
-        })
+        // var formidable = require('formidable');
+        // var form = new formidable.IncomingForm();
+        // form.uploadDir = "./src/public/uplpoads";
+        // form.keepExtensions = true;
+        // form.maxFieldsSize = 1024*1024;
+        // form.multiples = true;
+        // form.parse(req,(err,fields, files) => {
+        //     if(err) {
+        //         res.json({mess: 'co loi'})
+        //     }
+        //     var arrayFiles = files[""];
+        //     if(arrayFiles.length > 0) {
+        //         var fileName =  [];
+        //         arrayFiles.forEach((file) => {
+        //             fileName.push(file.path);
+        //         })
+        //         res.json({
+        //             data: fileName,
+        //             numberOfImages : fileName.length
+        //         })
+        //     }
+        //     else {
+        //         res.json({mess: 'co loi'})
+        //     }
+        // })
+        res.json(req.file);
     }
 
     // sau khi cập nhật dữ liệu 
