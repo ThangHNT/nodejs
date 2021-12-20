@@ -130,23 +130,24 @@ class UserController {
         //         res.json({mess: 'co loi'})
         //     }
         // })
-        res.json(req.file);
+        res.redirect('/account/uploaded/46432131');
     }
 
     // sau khi cập nhật dữ liệu 
     updatedData(req, res, next) {   
-        Img.findOne({_id : req.params.id}, (err, item) => {
-            if (err) {
-                console.log(err);
-                res.status(500).send('An error occurred', err);
-            }
-            else {
-                const img = item.img.data.toString("base64");
-                res.render('myAccount', {
-                    img,
-                })
-            }
-        });
+        // Img.findOne({_id : req.params.id}, (err, item) => {
+        //     if (err) {
+        //         console.log(err);
+        //         res.status(500).send('An error occurred', err);
+        //     }
+        //     else {
+        //         const img = item.img.data.toString("base64");
+        //         res.render('myAccount', {
+        //             img,
+        //         })
+        //     }
+        // });
+        res.json(req.file);
     }
 }
 
