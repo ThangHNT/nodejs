@@ -54,7 +54,7 @@ function authenticate(app) {
             //     }
             //     else res.redirect(`/home`);
             // })
-            res.json(req.user);
+            res.send('thanh cong');
         });
 }
 
