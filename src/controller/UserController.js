@@ -113,7 +113,7 @@ class UserController {
         form.multiples = true;
         form.parse(req,(err,fields, files) => {
             if(err) {
-                res.send('co loi');
+                res.json({mess: 'co loi'})
             }
             var arrayFiles = files[""];
             if(arrayFiles.length > 0) {
@@ -125,6 +125,9 @@ class UserController {
                     data: fileName,
                     numberOfImages : fileName.length
                 })
+            }
+            else {
+                res.json({mess: 'co loi'})
             }
         })
     }
