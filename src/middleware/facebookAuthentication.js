@@ -43,18 +43,18 @@ function authenticate(app) {
             const id = req.user.id;
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
-            User.findOne({facebookId: id}, function(err, user) {
-                if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar: avatar});
-                    user.save()
-                        .then(() => {
-                            res.redirect(`/home`);
-                        })
-                        .catch(next);
-                }
-                else res.redirect(`/home`);
-            })
-            // res.json(req.user);
+            // User.findOne({facebookId: id}, function(err, user) {
+            //     if(user == null) {
+            //         const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar: avatar});
+            //         user.save()
+            //             .then(() => {
+            //                 res.redirect(`/home`);
+            //             })
+            //             .catch(next);
+            //     }
+            //     else res.redirect(`/home`);
+            // })
+            res.send(avatar);
         });
 }
 
