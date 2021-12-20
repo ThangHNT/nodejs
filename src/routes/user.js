@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controller/UserController.js');
 const multer  = require('multer');      
-var storage = multer.diskStorage({      // tạo storage để lưu file ảnh
-    destination: (req, file, cb) => {   // lấy vị trí file ảnh
-        cb(null, './src/public/uploads')    // ảnh đc lưu vào thư mục upload
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
+// var storage = multer.diskStorage({      // tạo storage để lưu file ảnh
+//     destination: (req, file, cb) => {   // lấy vị trí file ảnh
+//         cb(null, './src/public/uploads')    // ảnh đc lưu vào thư mục upload
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
   
 // var upload = multer({ storage: storage });
 
