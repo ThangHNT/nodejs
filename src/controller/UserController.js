@@ -107,7 +107,7 @@ class UserController {
         // dung voi formidable
         var formidable = require('formidable');
         var form = new formidable.IncomingForm();
-        form.uploadDir = "./src/puclic/uplpoads";
+        form.uploadDir = "./src/public/uplpoads";
         form.keepExtension = true;
         form.maxFieldSize = 1024*1024;
         form.multiples = true;
