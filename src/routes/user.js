@@ -11,7 +11,7 @@ var storage = multer.diskStorage({      // tạo storage để lưu file ảnh
     }
 });
   
-var upload = multer({ storage: storage });
+// var upload = multer({ storage: storage });
 
 router.get('/myAccount',userController.myAccount); 
 // router.get('/updateProfile',userController.updateProfile); 
