@@ -2,7 +2,6 @@ const User = require('../models/user.js');
 const {component} = require('../convertToObject');
 const Img = require('../models/img.js');
 const fs = require('fs');
-const path = require('path');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
