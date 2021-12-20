@@ -108,10 +108,10 @@ class UserController {
         var formidable = require('formidable');
         var form = new formidable.IncomingForm();
         form.uploadDir = "./src/public/uplpoads";
-        form.keepExtension = true;
-        form.maxFieldSize = 1024*1024;
+        form.keepExtensions = true;
+        form.maxFieldsSize = 1024*1024;
         form.multiples = true;
-        form.parse(req,(err,fields, files)=> {
+        form.parse(req,(err,fields, files) => {
             if(err) {
                 res.send('co loi');
             }
