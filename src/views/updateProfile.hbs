@@ -33,23 +33,23 @@
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
         <div class="content-body-update mt-4">
-            <form class="form-update" action="/account/uploadData" method="post" enctype="multipart/form-data">
+            <form class="form-update" action="/account/uploadData" method="post" >
                 <div class="field-update">
-                    {{#if img}}
+                    {{!-- {{#if img}}
                         <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle" alt="avatar">
                         {{else}}
                         <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
-                    {{/if}}
-
-                    <input type="file" name ="avatar" class="btn-file">
+                    {{/if}} --}}
+                    <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
+                    <input type="file" accept=".jpg, .png" name ="avatar" class="file-upload">
                 </div>
                 <div class="field-update mt-4">
                     <label for="username"><strong>User name</strong></label>
-                    <input type="text" id = "username" class="input-update">
+                    <input type="text" id = "username" name="username" class="input-update">
                 </div>
                 <div class="field-update mt-4">
                     <label for="gender"><strong>Gender</strong></label>
-                    <select class="">
+                    <select name="gender">
                         <option> Giới tính </option>
                         <option value="male">Nam</option>
                         <option value="female">Nữ</option>
@@ -57,23 +57,95 @@
                 </div>
                 <div class="field-update mt-4">
                     <label for="dateOfBirth"><strong>Date of birth</strong></label>
-                    <input type="date" id = "dateOfBirth" class="input-update">
+                    <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
                 </div>
                 <div class="field-update mt-4">
                     <label for="email"><strong>Email</strong></label>
-                    <input type="text" id = "email" class="input-update">
+                    <input type="text" name="email" id = "email" class="input-update">
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Lưu thay đổi</button>
+                <button type="submit" id = "btn-submit" class="btn btn-primary mt-4">Lưu thay đổi</button>
             </form>
         </div>
     </div>
 </div>
 
-{{!-- <script>
-    var form = document.querySelector('.form-update');
-    let img = document.querySelector('.btn-file');
-    form.onsubmit = function(e) {
-        e.preventDefault();
-        console.log(img.value);
-    }
-</script> --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+        var form = document.querySelector('.form-update');
+        var anh = document.querySelector('.avatar');
+        const btnSubmit = document.querySelector('#btn-submit');
+        const reader = new FileReader();
+        const fileUpload = document.querySelector(".file-upload");
+
+        // xử lý khi chọn avatar => chọn xog thay đổi luôn avatar
+        fileUpload.addEventListener("change", (event) => {
+            const files  = event.target.files;
+            reader.readAsDataURL(files[0]);
+            reader.addEventListener("load", (event) => {
+                const binary = event.target.result;
+                var img = binary.slice(binary.lastIndexOf(',')+1);
+                const byteCharacters = atob(img);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const b64toBlob = (img, contentType='', sliceSize=512) => {
+                    const byteCharacters = atob(img);
+                    const byteArrays = [];
+
+                    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                        const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                        const byteNumbers = new Array(slice.length);
+                        for (let i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
+                        }
+
+                        const byteArray = new Uint8Array(byteNumbers);
+                        byteArrays.push(byteArray);
+                    }
+
+                    const blob = new Blob(byteArrays, {type: contentType});
+                    return blob;
+                }
+                const blob = b64toBlob(img, 'image/jpeg');
+                const blobUrl = URL.createObjectURL(blob);
+                anh.src = blobUrl;
+
+
+                {{!-- function compress(string, encoding) {
+                    const byteArray = new TextEncoder().encode(string);
+                    const cs = new CompressionStream(encoding);
+                    const writer = cs.writable.getWriter();
+                    writer.write(byteArray);
+                    writer.close();
+                    return new Response(cs.readable).arrayBuffer();
+                }
+
+                function decompress(byteArray, encoding) {
+                    const cs = new DecompressionStream(encoding);
+                    const writer = cs.writable.getWriter();
+                    writer.write(byteArray);
+                    writer.close();
+                    return new Response(cs.readable).arrayBuffer().then(function (arrayBuffer) {
+                        return new TextDecoder().decode(arrayBuffer);
+                    });
+                }
+
+
+                async function testCompression(text, encoding = 'deflate') {
+                    const compressedData = await compress(text, encoding);
+                    console.log('compressed length:', compressedData);
+                    const decompressedText = await decompress(compressedData, encoding);
+                    console.log('decompressed length:', decompressedText);
+                }
+
+                (async function () {
+                    await testCompression(img, 'deflate');
+                    await testCompression(img, 'gzip');
+                }()); --}}
+            })
+        })
+    })
+</script>
