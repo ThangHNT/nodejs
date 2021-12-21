@@ -33,14 +33,14 @@
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
         <div class="content-body-update mt-4">
-            <form class="form-update" action="/account/uploadData" method="post" >
+            <form class="form-update" action="/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if img}}
                         <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle" alt="avatar">
                         {{else}}
                         <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
-                    {{!-- <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar"> --}}
+                    
                     <input type="file" accept=".jpg, .png" name ="avatar" class="file-upload">
                 </div>
                 <div class="field-update mt-4">
@@ -84,14 +84,10 @@
             reader.addEventListener("load", (event) => {
                 const binary = event.target.result;
                 var img = binary.slice(binary.lastIndexOf(',')+1);
-                const byteCharacters = atob(img);
-                const byteNumbers = new Array(byteCharacters.length);
-                for (let i = 0; i < byteCharacters.length; i++) {
-                    byteNumbers[i] = byteCharacters.charCodeAt(i);
-                }
-                const byteArray = new Uint8Array(byteNumbers);
+
+                // 
                 const b64toBlob = (img, contentType='', sliceSize=512) => {
-                    const byteCharacters = atob(img);
+                    const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
                     const byteArrays = [];
 
                     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
@@ -99,10 +95,10 @@
 
                         const byteNumbers = new Array(slice.length);
                         for (let i = 0; i < slice.length; i++) {
-                        byteNumbers[i] = slice.charCodeAt(i);
+                            byteNumbers[i] = slice.charCodeAt(i); // lấy mã Unicode 
                         }
 
-                        const byteArray = new Uint8Array(byteNumbers);
+                        const byteArray = new Uint8Array(byteNumbers); // tạo mảng kiểu 8bit
                         byteArrays.push(byteArray);
                     }
 
@@ -110,8 +106,8 @@
                     return blob;
                 }
                 const blob = b64toBlob(img, 'image/jpeg');
-                const blobUrl = URL.createObjectURL(blob);
-                anh.src = blobUrl;
+                const blobUrl = URL.createObjectURL(blob);  // tạo url mới 
+                anh.src = blobUrl;        
 
 
                 {{!-- function compress(string, encoding) {
