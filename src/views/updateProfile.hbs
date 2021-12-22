@@ -33,10 +33,11 @@
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
         <div class="content-body-update mt-4">
-            <form class="form-update" action="/account/uploadData" method="post" enctype="multipart/form-data">
+            <form class="form-update" action = "/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if img}}
                         <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle" alt="avatar">
+                        
                         {{else}}
                         <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
@@ -76,6 +77,7 @@
         const btnSubmit = document.querySelector('#btn-submit');
         const reader = new FileReader();
         const fileUpload = document.querySelector(".file-upload");
+        var imgUrl = '';
 
         // xử lý khi chọn avatar => chọn xog thay đổi luôn avatar
         fileUpload.addEventListener("change", (event) => {
@@ -84,7 +86,7 @@
             reader.addEventListener("load", (event) => {
                 const binary = event.target.result;
                 var img = binary.slice(binary.lastIndexOf(',')+1);
-
+                
                 // 
                 const b64toBlob = (img, contentType='', sliceSize=512) => {
                     const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
@@ -107,41 +109,10 @@
                 }
                 const blob = b64toBlob(img, 'image/jpeg');
                 const blobUrl = URL.createObjectURL(blob);  // tạo url mới 
-                anh.src = blobUrl;        
-                console.log(blobUrl);
-
-
-                {{!-- function compress(string, encoding) {
-                    const byteArray = new TextEncoder().encode(string);
-                    const cs = new CompressionStream(encoding);
-                    const writer = cs.writable.getWriter();
-                    writer.write(byteArray);
-                    writer.close();
-                    return new Response(cs.readable).arrayBuffer();
-                }
-
-                function decompress(byteArray, encoding) {
-                    const cs = new DecompressionStream(encoding);
-                    const writer = cs.writable.getWriter();
-                    writer.write(byteArray);
-                    writer.close();
-                    return new Response(cs.readable).arrayBuffer().then(function (arrayBuffer) {
-                        return new TextDecoder().decode(arrayBuffer);
-                    });
-                }
-
-
-                async function testCompression(text, encoding = 'deflate') {
-                    const compressedData = await compress(text, encoding);
-                    console.log('compressed length:', compressedData);
-                    const decompressedText = await decompress(compressedData, encoding);
-                    console.log('decompressed length:', decompressedText);
-                }
-
-                (async function () {
-                    await testCompression(img, 'deflate');
-                    await testCompression(img, 'gzip');
-                }()); --}}
+                anh.src = blobUrl;
+                imgUrl = blobUrl.toString();
+                console.log(imgUrl);
+                
             })
         })
     })

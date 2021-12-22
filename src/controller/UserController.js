@@ -103,7 +103,7 @@ class UserController {
         //         res.redirect(`/account/uploaded/${image._id}`)  
         //     })
         //     .catch(next);
-        res.send('thanh cong')
+        res.send(req.body);
     }
 
     // sau khi cập nhật dữ liệu 
@@ -122,6 +122,7 @@ class UserController {
         // });
         res.json({mess: "thanh cong"});
     }
+
 }
 
 module.exports = new UserController;
