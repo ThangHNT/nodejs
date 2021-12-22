@@ -119,11 +119,14 @@ class UserController {
             const image = new Img(img);
             image.save() 
                 .then(() => {
-                    res.json(req.body);
+                    res.json(req.files);
                 })
                 .catch(next);
         }
-        else res.json(req.body);
+        else {
+            
+            res.send('thanh cong');
+        }
     }
 
     // sau khi cập nhật dữ liệu 
