@@ -46,7 +46,7 @@ function authenticate(app) {
             req.setHeader('user',id);
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar: avatar});
+                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook'});
                     user.save()
                         .then(() => {
                             res.redirect(`/home`);
