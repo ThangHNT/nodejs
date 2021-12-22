@@ -110,8 +110,6 @@
                 const blob = b64toBlob(img, 'image/jpeg');
                 const blobUrl = URL.createObjectURL(blob);  // tạo url mới 
                 anh.src = blobUrl;
-                imgUrl = blobUrl.toString();
-                console.log(imgUrl);
                 
             })
         })

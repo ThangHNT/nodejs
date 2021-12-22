@@ -7,6 +7,7 @@ const fbAuthentication = require('./middleware/facebookAuthentication.js');
 const ggAthentication = require('./middleware/googleAuthentication.js');
 const path = require('path');
 const handlebars = require('express-handlebars');
+const upload = require('express-fileupload');
 
 
 app.engine('.hbs', handlebars({
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(upload());
 
 // connect to db
 // const mongoose = require('mongoose');

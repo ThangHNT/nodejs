@@ -103,7 +103,27 @@ class UserController {
         //         res.redirect(`/account/uploaded/${image._id}`)  
         //     })
         //     .catch(next);
-        res.send(req.body);
+        
+        // dung voi express-fileupload
+        if(req.files) {
+            var dataBase64 = req.files.avatar.data.toString("base64");
+            const buffer = Buffer.from(dataBase64,'base64');
+            const img = {
+                name: req.files.avatar.name,
+                img : {
+                    contentType:req.files.avatar.mimetype,
+                    data:dataBase64,
+                    image: buffer
+                }
+            };
+            const image = new Img(img);
+            image.save() 
+                .then(() => {
+                    res.json(req.body);
+                })
+                .catch(next);
+        }
+        else res.json(req.body);
     }
 
     // sau khi cập nhật dữ liệu 
