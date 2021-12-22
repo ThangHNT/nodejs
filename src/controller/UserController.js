@@ -119,7 +119,7 @@ class UserController {
             const image = new Img(img);
             image.save() 
                 .then(() => {
-                    res.json(req.files);
+                    res.send('thanh cong');
                 })
                 .catch(next);
         }
