@@ -121,6 +121,7 @@ class UserController {
                 user.save();
 
                 if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
+                    var avatar_base64 ='';
                     Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
                         if(!img) {
                             var dataBase64 = req.files.avatar.data.toString("base64");
@@ -138,12 +139,12 @@ class UserController {
                             image.owner = user;
                             user.avatar = image;
                             user.save(); image.save();
-                        } else {
-                            img.owner = user; img.save();
-                        }
+                            avatar_base64 = dataBase64;
+                        } 
                     })
                     res.render('myAccount', {
                         user,
+                        avatar_base64,
                     })
                     // res.json(avatar_base64);
 
