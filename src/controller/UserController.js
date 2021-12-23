@@ -122,7 +122,7 @@ class UserController {
                 const avatar =  Img.findOne({owner: user._id}, function(err, img){
                     return img.src;
                 });
-                res.json(user);
+                res.json(avatar);
 
             //     if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
             //         Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
