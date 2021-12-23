@@ -142,7 +142,7 @@ class UserController {
                     })
                     res.render('myAccount', {
                         user: component(user),
-                        dataBase64,
+                        dataBase64 : dataBase64,
                     })
                     // res.json(avatar_base64);
 
