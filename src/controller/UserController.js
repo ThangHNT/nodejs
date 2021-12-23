@@ -142,11 +142,11 @@ class UserController {
                             avatar_base64 = dataBase64;
                         } 
                     })
-                    // res.render('myAccount', {
-                    //     user,
-                    //     avatar_base64,
-                    // })
-                    res.json(avatar_base64);
+                    res.render('myAccount', {
+                        user,
+                        avatar_base64,
+                    })
+                    // res.json(avatar_base64);
 
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
