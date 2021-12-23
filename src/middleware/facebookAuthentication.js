@@ -48,7 +48,8 @@ function authenticate(app) {
             image.save();
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
+                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook'});
+                    user.avatar.push(image);
                     user.save()
                         .then(() => {
                             res.redirect(`/home`);
