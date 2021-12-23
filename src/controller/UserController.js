@@ -76,7 +76,7 @@ class UserController {
         //     });
         // }
         // res.render('myAccount');
-        res.json(user);
+        res.json(req.user);
     }
 
     // view chỉnh sửa thông tin cá nhân
