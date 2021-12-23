@@ -62,19 +62,12 @@ class UserController {
     myAccount(req, res, next) {
         const provider = req.user.provider;
         var id = req.user.id;
-        if(provider == 'facebook') {
-            User.findOne({facebookId: id}, function(err, user) {
-                return res.render('myAccount', {
-                    user : component(user)
-                })
-            })
-        } else {
-            User.findOne({googleId: id}, function(err, user) {
-                return res.render('myAccount', {
-                    user : component(user)
-                })
-            });
-        }
+        User.findOne({id: id,authType: provider}, function(err, user) {
+            // return res.render('myAccount', {
+            //     user : component(user)
+            // })
+            res.json(user);
+        })
         // res.render('myAccount');
     }
 

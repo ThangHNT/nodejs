@@ -44,20 +44,20 @@ function authenticate(app) {
             const id = req.user.id;
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
-            const image = new Img({name: name, id : id, src : avatar});
+            const image = new Img({name: 'fb-avatar', id : id, src : avatar});
             image.save();
-            // User.findOne({facebookId: id}, function(err, user) {
-            //     if(user == null) {
-            //         const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
-            //         user.save()
-            //             .then(() => {
-            //                 res.redirect(`/home`);
-            //             })
-            //             .catch(next);
-            //     }
-            //     else res.redirect(`/home`);
-            // })
-            res.json(image);
+            User.findOne({facebookId: id}, function(err, user) {
+                if(user == null) {
+                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
+                    user.save()
+                        .then(() => {
+                            res.redirect(`/home`);
+                        })
+                        .catch(next);
+                }
+                else res.redirect(`/home`);
+            })
+            // res.json(image);
         });
 }
 
