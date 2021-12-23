@@ -103,48 +103,47 @@ class UserController {
         //         res.redirect(`/account/uploaded/${image._id}`)  
         //     })
         //     .catch(next);
-        
+        // =====================================================================================
         // dung voi express-fileupload
-        if(req.files) {
-            var dataBase64 = req.files.avatar.data.toString("base64");
-            const buffer = Buffer.from(dataBase64,'base64');
-            const img = {
-                name: req.files.avatar.name,
-                img : {
-                    contentType:req.files.avatar.mimetype,
-                    data:dataBase64,
-                    image: buffer
-                }
-            };
-            const image = new Img(img);
-            image.save() 
-                .then(() => {
-                    res.send('thanh cong');
-                })
-                .catch(next);
-        }
-        else {
-            
-            res.send('thanh cong');
-        }
+        // if(req.files) {
+        //     
+        //     Img.findOne({id_md5:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
+        //         if(!img) {
+        //             var dataBase64 = req.files.avatar.data.toString("base64");
+        //             const buffer = Buffer.from(dataBase64,'base64');
+        //             const img = {
+        //                 name: req.files.avatar.name,
+        //                 id_md5: req.files.avatar.md5,
+        //                 img : {
+        //                     contentType:req.files.avatar.mimetype,
+        //                     data:dataBase64,
+        //                     image: buffer
+        //                 }
+        //             };
+        //             const image = new Img(img);
+        //             image.save();
+        //         }
+        //     })
+        //     res.redirect(`/account/uploaded/${id}`);
+        // }
+        // else {
+        //     res.redirect(`/account/uploaded/${id}`);
+        // }
+        // var info = {
+        //     username: req.body.username,
+        //     avatar : req.files.avatar.data.toString("base64"),
+        //     // avatar : '',
+        //     gender: req.body.gender,
+        //     dateOfBirth: req.body.dateOfBirth,
+        //     address: req.body.address,
+        //     email: req.body.email,
+        // }
+        // res.render('myAccount', {
+        //     user: info,
+        // })
+        res.json(req.user);
     }
 
-    // sau khi cập nhật dữ liệu 
-    updatedData(req, res, next) {   
-        // Img.findOne({_id : req.params.id}, (err, item) => {
-        //     if (err) {
-        //         console.log(err);
-        //         res.status(500).send('An error occurred', err);
-        //     }
-        //     else {
-        //         const img = item.img.data.toString("base64");
-        //         res.render('myAccount', {
-        //             img,
-        //         })
-        //     }
-        // });
-        res.json({mess: "thanh cong"});
-    }
 
 }
 

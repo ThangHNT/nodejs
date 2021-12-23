@@ -52,13 +52,17 @@
                     <label for="gender"><strong>Gender</strong></label>
                     <select name="gender">
                         <option> Giới tính </option>
-                        <option value="male">Nam</option>
-                        <option value="female">Nữ</option>
+                        <option value="nam">Nam</option>
+                        <option value="nữ">Nữ</option>
                     </select>
                 </div>
                 <div class="field-update mt-4">
                     <label for="dateOfBirth"><strong>Date of birth</strong></label>
                     <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
+                </div>
+                <div class="field-update mt-4">
+                    <label for="address"><strong>Address</strong></label>
+                    <input type="text" name="address" id = "address" class="input-update">
                 </div>
                 <div class="field-update mt-4">
                     <label for="email"><strong>Email</strong></label>
@@ -87,7 +91,7 @@
                 const binary = event.target.result;
                 var img = binary.slice(binary.lastIndexOf(',')+1);
                 
-                // 
+                // hàm tạo url cho thuộc tính src của ảnh
                 const b64toBlob = (img, contentType='', sliceSize=512) => {
                     const byteCharacters = atob(img);   // giải mã chuỗi mã hóa base64
                     const byteArrays = [];

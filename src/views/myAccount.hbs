@@ -34,8 +34,8 @@
         </div>
         <div class="content-body mt-4">
 
-            {{#if img}}
-                <img src= "data:image/jpeg;base64,{{img}}" class="rounded-circle avatar" alt="avatar">
+            {{#if user}}
+                <img src= "data:image/jpeg;base64,{{user.avatar}}" class="rounded-circle avatar" alt="avatar">
                 {{else}}
                 <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="avatar">
             {{/if}}
@@ -55,7 +55,7 @@
                 <div class = "dateofbirth">
                     <p>
                         <i class="fas fa-birthday-cake"></i>
-                        <strong>Date of Birth : </strong> {{user.dateofbirth}}
+                        <strong>Date of Birth : </strong> {{dateOfBirth user.dateOfBirth}} 
                     </p>
                 </div>
                 <div class = "address">

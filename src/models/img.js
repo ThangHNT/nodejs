@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 const Img = new Schema (
     {
         name: String,
+        id_md5: String,
+        src: String,
         img:
         {
             data: Buffer,

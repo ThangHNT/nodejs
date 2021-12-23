@@ -54,7 +54,7 @@ function authenticate(app) {
             //     }
             //     else res.redirect(`/home`);
             // })
-            res.send(avatar);
+            res.json(req.user);
         });
 }
 
