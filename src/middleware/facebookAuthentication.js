@@ -59,7 +59,6 @@ function authenticate(app) {
                 }
                 else {
                     image.owner = (user);
-                    image.save();
                     res.redirect(`/home`);
                 }
             })
