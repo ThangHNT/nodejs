@@ -1,6 +1,7 @@
 const User = require('../models/user.js');
 const {component} = require('../convertToObject');
 const Img = require('../models/img.js');
+const { reset } = require('nodemon');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -142,10 +143,11 @@ class UserController {
                             avatar_base64 = dataBase64;
                         } 
                     })
-                    res.render('myAccount', {
-                        user,
-                        avatar_base64,
-                    })
+                    // res.render('myAccount', {
+                    //     user,
+                    //     avatar_base64,
+                    // })
+                    res.json(avatar_base64);
 
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
