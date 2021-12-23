@@ -137,6 +137,7 @@ class UserController {
                                 }
                             };
                             const image = new Img(img);
+                            image.owner = user;
                             user.avatar = image;
                             user.save();
                             image.save();
