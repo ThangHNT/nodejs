@@ -147,7 +147,7 @@ class UserController {
                     //     user,
                     //     avatar_base64,
                     // })
-                    res.json(avatar_base64);
+                    res.send('thanh cong');
 
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
