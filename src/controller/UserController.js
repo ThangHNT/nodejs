@@ -112,13 +112,13 @@ class UserController {
         var id = req.user.id;
         
         User.findOne({id: id,authType: provider}, function(err, user) {
-
             if(user){
                 user.username = req.body.username;
                 user.email = req.body.email;
                 user.address = req.body.address;
                 user.dateOfBirth = req.body.dateOfBirth;
                 user.gender = req.body.gender;
+                user.save();
                 const avatar =  Img.findOne({owner: user._id}, function(err, img){
                     return img.src;
                 });
@@ -155,7 +155,7 @@ class UserController {
                 }
             }
         })
-        // res.json(req.user);
+        // res.json(req.body);
     }
 
 
