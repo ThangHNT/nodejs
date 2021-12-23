@@ -143,7 +143,7 @@ class UserController {
                         } 
                     })
                     res.render('myAccount', {
-                        user,
+                        user: component(user),
                         avatar_base64,
                     })
                     // res.json(avatar_base64);
@@ -151,7 +151,7 @@ class UserController {
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
                         res.render('myAccount', {
-                            user,
+                            user: component(user),
                             avatar: img.src
                         })
                     });
