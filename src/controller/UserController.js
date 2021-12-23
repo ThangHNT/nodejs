@@ -149,8 +149,6 @@ class UserController {
                             })
                         }
                     })
-                    
-
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
                         res.render('myAccount', {
