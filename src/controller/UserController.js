@@ -69,12 +69,12 @@ class UserController {
                 })
             })
         })
-        // res.render('myAccount');
     }
 
     // view chỉnh sửa thông tin cá nhân
     updateProfile(req, res, next) {
-        res.render('updateProfile');
+        // res.render('updateProfile');
+        res.json(req.user);
     }
 
     // submit form chỉnh sửa thông tin cá nhân
