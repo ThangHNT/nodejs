@@ -36,7 +36,7 @@
             <form class="form-update" action = "/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if avatar}}
-                        <img src= "{{avatar}}" class="rounded-circle" alt="avatar">
+                        <img src= "{{avatar}}" class="rounded-circle" class="avatar" alt="avatar">
                         {{else}}
                             <img src= "data:image/jpeg;base64,{{avatar_base64}}" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
@@ -76,7 +76,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function(e) {
         var form = document.querySelector('.form-update');
-        var anh = document.querySelector('.img-file');
+        var anh = document.querySelector('.avatar');
         const btnSubmit = document.querySelector('#btn-submit');
         const reader = new FileReader();
         const fileUpload = document.querySelector(".file-upload");
