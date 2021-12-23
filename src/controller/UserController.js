@@ -140,11 +140,11 @@ class UserController {
                             user.save(); image.save();
                         } 
                     })
-                    res.render('myAccount', {
-                        user: component(user),
-                        dataBase64 : dataBase64,
-                    })
-                    // res.json(avatar_base64);
+                    // res.render('myAccount', {
+                    //     user: component(user),
+                    //     dataBase64 : dataBase64,
+                    // })
+                    res.json(dataBase64);
 
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
