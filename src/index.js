@@ -19,7 +19,7 @@ app.engine('.hbs', handlebars({
             const d = new Date();
             return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         },
-        dateOfBirth(date){
+        dateOfBirth(pad){
             pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
             const d = new Date();
             return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
