@@ -48,8 +48,7 @@ function authenticate(app) {
             User.findOne({facebookId: id}, function(err, user) {
 
                 if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook'});
-                    user.avatar.push(image);
+                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
                     user.save()
                         .then(() => {
                             image.owner = (user);

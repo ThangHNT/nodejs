@@ -1,7 +1,6 @@
 const User = require('../models/user.js');
 const {component} = require('../convertToObject');
 const Img = require('../models/img.js');
-const fs = require('fs');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -63,8 +62,10 @@ class UserController {
         const provider = req.user.provider;
         var id = req.user.id;
         User.findOne({id: id,authType: provider}, function(err, user) {
+            const avatar = Img.findOne({_id: user.avatar})
             return res.render('myAccount', {
-                user : component(user)
+                user : component(user),
+                avatar : avatar.src,
             })
             // res.json(user);
         })
