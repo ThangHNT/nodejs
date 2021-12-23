@@ -68,7 +68,7 @@ class UserController {
                 //     avatar : img.src,
                 //     avatar_base64: img.img.data,
                 // })
-                res.json(img.img.data);
+                res.json(img);
             })
         })
     }
