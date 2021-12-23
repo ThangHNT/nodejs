@@ -10,7 +10,7 @@ const User = new Schema (
         email : {type: String, default: ''},
         authType : {type: String, maxLength:30, required: true},
         gender : {type: String, maxLength:10, default: ''},
-        addresses : {type: String, maxLength:100, default:''},
+        address : {type: String, maxLength:100, default:''},
         avatar : {type: Schema.Types.ObjectId, ref : 'Img'},
         dateOfBirth : {type: Date},
     }
