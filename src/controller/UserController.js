@@ -67,7 +67,7 @@ class UserController {
             //     user : component(user),
             //     avatar : avatar.src,
             // })
-            res.json(avatar.src);
+            res.json(avatar);
         })
         // res.render('myAccount');
     }
