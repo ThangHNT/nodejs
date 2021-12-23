@@ -7,6 +7,7 @@ const Img = new Schema (
         name: String,
         id: String,
         src: String,
+        owner: {type: Schema.Types.ObjectId, ref : 'User'},
         img:
         {
             data: Buffer,

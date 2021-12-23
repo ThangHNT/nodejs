@@ -45,18 +45,24 @@ function authenticate(app) {
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
             const image = new Img({name: 'fb-avatar', id : id, src : avatar});
-            image.save();
             User.findOne({facebookId: id}, function(err, user) {
+
                 if(user == null) {
                     const user = new User({facebookId :id, email : '', username : name,authType: 'facebook'});
                     user.avatar.push(image);
                     user.save()
                         .then(() => {
+                            image.owner = (user);
+                            image.save();
                             res.redirect(`/home`);
                         })
                         .catch(next);
                 }
-                else res.redirect(`/home`);
+                else {
+                    image.owner = (user);
+                    image.save();
+                    res.redirect(`/home`);
+                }
             })
             // res.json(image);
         });
