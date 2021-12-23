@@ -121,7 +121,7 @@
             e.preventDefault();
         }
 
-        btnSubmit.onclick = (e) => {
+        btnSubmit.onclick = function() {
             form.action = "/account/uploadData";
             form.submit();
         }
