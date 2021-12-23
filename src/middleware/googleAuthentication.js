@@ -45,7 +45,7 @@ function ggAthentication(app) {
         const avatar = req.user.photos[0].value;
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
-                const image = new Img({name: 'fb-avatar', id : id, src : avatar});
+                const image = new Img({name: 'gg-avatar', id : id, src : avatar});
                 image.save();
                 const user = new User({googleId :id, email : '', username : fullName,authType: 'google', avatar: image});
                 user.save()
