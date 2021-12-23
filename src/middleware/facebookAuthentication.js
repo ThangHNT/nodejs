@@ -44,16 +44,11 @@ function authenticate(app) {
             const id = req.user.id;
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
-            var image ;
-            Img.findOne({id: id}, function(err, avatar){
-                if(!avatar){
-                    image = new Img({name: 'fb-avatar', id : id, src : avatar});
-                }
-                else image = avatar;
-            })
-            image.save();
+            
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
+                    const image = new Img({name: 'fb-avatar', id : id, src : avatar});
+                    image.save();
                     const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
                     user.save()
                         .then(() => {
@@ -63,7 +58,6 @@ function authenticate(app) {
                         .catch(next);
                 }
                 else {
-                    image.owner = (user);
                     res.redirect(`/home`);
                 }
             })
