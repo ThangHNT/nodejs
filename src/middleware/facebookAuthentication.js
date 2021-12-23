@@ -3,6 +3,7 @@ var passport = require('passport');
 var session = require('express-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user.js');
+const Img = require('../models/img.js');
 
 function authenticate(app) {
     app.set('trust proxy', 1) // trust first proxy
@@ -43,9 +44,10 @@ function authenticate(app) {
             const id = req.user.id;
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
+            const image = new Img({name: name, id : id, src : avatar});
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
-                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook'});
+                    const user = new User({facebookId :id, email : '', username : name,authType: 'facebook', avatar : image});
                     user.save()
                         .then(() => {
                             res.redirect(`/home`);

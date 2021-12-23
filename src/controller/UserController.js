@@ -113,7 +113,7 @@ class UserController {
         //             const buffer = Buffer.from(dataBase64,'base64');
         //             const img = {
         //                 name: req.files.avatar.name,
-        //                 id_md5: req.files.avatar.md5,
+        //                 id: req.files.avatar.md5, // lấy id từ hàm băm md5
         //                 img : {
         //                     contentType:req.files.avatar.mimetype,
         //                     data:dataBase64,
