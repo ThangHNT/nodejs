@@ -1,7 +1,6 @@
 const User = require('../models/user.js');
 const {component} = require('../convertToObject');
 const Img = require('../models/img.js');
-const { reset } = require('nodemon');
 class UserController {
     // khi ng dung nhap đăng nhập 
     viewSignUp(req, res, next) {
@@ -122,7 +121,6 @@ class UserController {
                 user.save();
 
                 if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
-                    
                     Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
                         if(!img) {
                             var dataBase64 = req.files.avatar.data.toString("base64");
