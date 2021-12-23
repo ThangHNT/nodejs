@@ -140,7 +140,7 @@ class UserController {
                             user.save(); image.save();
                             res.render('myAccount', {
                                 user: component(user),
-                                avatar_base64: image.img.data,
+                                avatar_base64: dataBase64,
                             })
                         } else {
                             res.render('myAccount', {
