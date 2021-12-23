@@ -140,10 +140,7 @@ class UserController {
                             user.avatar = image;
                             user.save(); image.save();
                             avatar_base64 = dataBase64;
-                        } else {
-                            user.avatar = img; user.save();
-                            avatar_base64 = img.img.data;
-                        }
+                        } 
                     })
                     res.render('myAccount', {
                         user,

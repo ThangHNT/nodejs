@@ -37,36 +37,37 @@
             {{#if avatar}}
                 <img src= "{{avatar}}" class="rounded-circle avatar" alt="avatar">
                 {{else}}
-                <img src= "data:image/jpeg;base64,{{avatar_base64}}" class="rounded-circle" alt="avatar">
+                <img src= "data:image/jpeg;base64,{{avatar_base64}}" class="rounded-circle avatar" alt="avatar">
                 {{!-- <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="natural"> --}}
             {{/if}}
             
             <div class="basic-info mt-4">
                 <div class = "user-name">
-                    <p><i class="fas fa-user-circle"></i>
+                    <p value ="{{user.username}}">
+                        <i class="fas fa-user-circle"></i>
                         <strong>User name: </strong> {{user.username}}
                     </p>
                 </div>
                 <div class = "gender">
-                    <p>
+                    <p value ="{{user.gender}}">
                         <i class="fas fa-venus-mars"></i>
                         <strong>Gender : </strong> {{user.gender}}
                     </p>
                 </div>
                 <div class = "dateofbirth">
-                    <p>
+                    <p value ="{{user.dateOfBirth}}">
                         <i class="fas fa-birthday-cake"></i>
                         <strong>Date of Birth : </strong> {{user.dateOfBirth}}
                     </p>
                 </div>
                 <div class = "address">
-                    <p>
+                    <p value ="{{user.address}}">
                         <i class="fas fa-address-card"></i>
                         <strong>Address : </strong> {{user.address}}
                     </p>
                 </div>
                 <div class = "email">
-                    <p>
+                    <p value ="{{user.email}}">
                         <i class="fas fa-envelope"></i>
                         <strong>Email : </strong> {{user.email}}
                     </p>
