@@ -3,6 +3,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var session = require("express-session");
 var passport = require('passport');
 const User = require('../models/user.js');
+const Img = require('../models/img.js');
 
 function ggAthentication(app) {
     app.use(passport.initialize());
@@ -44,9 +45,13 @@ function ggAthentication(app) {
         const avatar = req.user.photos[0].value;
         User.findOne({googleId: id}, function(err, user) {
             if(user == null) {
+                const image = new Img({name: 'fb-avatar', id : id, src : avatar});
+                image.save();
                 const user = new User({googleId :id, email : '', username : fullName,authType: 'google'});
                 user.save()
                     .then(() => {
+                        image.owner = (user);
+                        image.save();
                         res.redirect(`/home`);
                     })
                     .catch(next);

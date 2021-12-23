@@ -20,7 +20,7 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Tài khoản</a>
+                <a class="dropdown-item" href="/home">Home</a>
                 <a class="dropdown-item" href="/account/logout">Đăng xuất</a>
             </div>
         </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="content-body mt-4">
 
-            {{#if user}}
+            {{#if avatar}}
                 <img src= "{{avatar}}" class="rounded-circle avatar" alt="avatar">
                 {{else}}
                 <img src= "https://www.nhatbanaz.com/wp-content/uploads/3322_pixta_30838512_L-310x205.jpg" class="rounded-circle avatar" alt="natural">

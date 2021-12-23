@@ -44,7 +44,6 @@ function authenticate(app) {
             const id = req.user.id;
             const name = req.user.displayName;
             const avatar = req.user.photos[0].value;
-            
             User.findOne({facebookId: id}, function(err, user) {
                 if(user == null) {
                     const image = new Img({name: 'fb-avatar', id : id, src : avatar});
