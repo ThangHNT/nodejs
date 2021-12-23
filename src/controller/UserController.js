@@ -60,23 +60,22 @@ class UserController {
 
     // xem thông tin tài khoản
     myAccount(req, res, next) {
-        // const provider = req.user.provider;
-        // var id = req.user.id;
-        // if(provider == 'facebook') {
-        //     User.findOne({facebookId: id}, function(err, user) {
-        //         return res.render('myAccount', {
-        //             user : component(user)
-        //         })
-        //     })
-        // } else {
-        //     User.findOne({googleId: id}, function(err, user) {
-        //         return res.render('myAccount', {
-        //             user : component(user)
-        //         })
-        //     });
-        // }
+        const provider = req.user.provider;
+        var id = req.user.id;
+        if(provider == 'facebook') {
+            User.findOne({facebookId: id}, function(err, user) {
+                return res.render('myAccount', {
+                    user : component(user)
+                })
+            })
+        } else {
+            User.findOne({googleId: id}, function(err, user) {
+                return res.render('myAccount', {
+                    user : component(user)
+                })
+            });
+        }
         // res.render('myAccount');
-        res.json(req.user);
     }
 
     // view chỉnh sửa thông tin cá nhân
