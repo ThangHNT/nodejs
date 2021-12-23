@@ -117,7 +117,7 @@ class UserController {
                 user.email = req.body.email;
                 user.address = req.body.address;
                 user.dateOfBirth = req.body.dateOfBirth;
-                user.gender = req.body.gender;
+                user.gender = req.body.gender.value;
                 user.save();
 
                 if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
