@@ -122,8 +122,8 @@ class UserController {
 
                 if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
                     Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
-                        const dataBase64 = req.files.avatar.data.toString("base64");
                         if(!img) {
+                            const dataBase64 = req.files.avatar.data.toString("base64");
                             const buffer = Buffer.from(dataBase64,'base64');
                             const img = {
                                 name: req.files.avatar.name,
