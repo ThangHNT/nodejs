@@ -41,7 +41,7 @@
                             <img src= "data:image/jpeg;base64,{{avatar_base64}}" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
                     
-                    <input type="file" accept=".jpg, .png" name ="avatar" class="file-upload">
+                    <input type="file" accept=".jpg, .png" name ="avatar" class="file-upload img-file">
                 </div>
                 <div class="field-update mt-4">
                     <label for="username"><strong>User name</strong></label>
@@ -76,7 +76,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function(e) {
         var form = document.querySelector('.form-update');
-        var anh = document.querySelector('.avatar');
+        var anh = document.querySelector('.img-file');
         const btnSubmit = document.querySelector('#btn-submit');
         const reader = new FileReader();
         const fileUpload = document.querySelector(".file-upload");
