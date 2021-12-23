@@ -83,8 +83,6 @@ class UserController {
                 })
             })
         })
-        // res.render('updateProfile');
-        
     }
 
     // submit form chỉnh sửa thông tin cá nhân
@@ -108,44 +106,55 @@ class UserController {
         //     })
         //     .catch(next);
         // =====================================================================================
+
         // dung voi express-fileupload
-        // if(req.files) {
-        //     
-        //     Img.findOne({id_md5:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
-        //         if(!img) {
-        //             var dataBase64 = req.files.avatar.data.toString("base64");
-        //             const buffer = Buffer.from(dataBase64,'base64');
-        //             const img = {
-        //                 name: req.files.avatar.name,
-        //                 id: req.files.avatar.md5, // lấy id từ hàm băm md5
-        //                 img : {
-        //                     contentType:req.files.avatar.mimetype,
-        //                     data:dataBase64,
-        //                     image: buffer
-        //                 }
-        //             };
-        //             const image = new Img(img);
-        //             image.save();
-        //         }
-        //     })
-        //     res.redirect(`/account/uploaded/${id}`);
-        // }
-        // else {
-        //     res.redirect(`/account/uploaded/${id}`);
-        // }
-        // var info = {
-        //     username: req.body.username,
-        //     avatar : req.files.avatar.data.toString("base64"),
-        //     // avatar : '',
-        //     gender: req.body.gender,
-        //     dateOfBirth: req.body.dateOfBirth,
-        //     address: req.body.address,
-        //     email: req.body.email,
-        // }
-        // res.render('myAccount', {
-        //     user: info,
-        // })
-        res.json(req.user);
+        const provider = req.user.provider;
+        var id = req.user.id;
+        
+        User.findOne({id: id,authType: provider}, function(err, user) {
+
+            if(user){
+                user.username = req.body.username;
+                user.email = req.body.email;
+                user.address = req.body.address;
+                user.dateOfBirth = req.body.dateOfBirth;
+                user.gender = req.body.gender;
+                const avatar =  Img.findOne({owner: user._id}, function(err, img){
+                    return img.src;
+                });
+                if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
+                    Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
+                        if(!img) {
+                            var dataBase64 = req.files.avatar.data.toString("base64");
+                            const buffer = Buffer.from(dataBase64,'base64');
+                            const img = {
+                                name: req.files.avatar.name,
+                                id: req.files.avatar.md5, // lấy id từ hàm băm md5
+                                img : {
+                                    contentType:req.files.avatar.mimetype,
+                                    data:dataBase64,
+                                    image: buffer
+                                }
+                            };
+                            const image = new Img(img);
+                            user.avatar = image;
+                            user.save();
+                            image.save();
+                            res.render('myAccount', {
+                                user,
+                                avatar_base64: dataBase64
+                            })
+                        }
+                    })
+                } else {
+                    res.render('myAccount', {
+                        user,
+                        avatar: avatar
+                    })
+                }
+            }
+        })
+        // res.json(req.user);
     }
 
 
