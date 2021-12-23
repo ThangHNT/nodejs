@@ -66,6 +66,7 @@ class UserController {
                 return res.render('myAccount', {
                     user : component(user),
                     avatar : img.src,
+                    avatar_base64: img.data
                 })
             })
         })
@@ -73,8 +74,18 @@ class UserController {
 
     // view chỉnh sửa thông tin cá nhân
     updateProfile(req, res, next) {
+        const provider = req.user.provider;
+        var id = req.user.id;
+        User.findOne({id: id,authType: provider}, function(err, user) {
+            Img.findOne({owner: user._id}, function(err, img) {
+                return res.render('updateProfile', {
+                    user : component(user),
+                    avatar : img.src,
+                })
+            })
+        })
         // res.render('updateProfile');
-        res.json(req.user);
+        
     }
 
     // submit form chỉnh sửa thông tin cá nhân
