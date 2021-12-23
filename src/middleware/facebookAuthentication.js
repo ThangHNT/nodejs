@@ -53,6 +53,7 @@ function authenticate(app) {
                     user.save()
                         .then(() => {
                             image.owner = (user);
+                            image.save();
                             res.redirect(`/home`);
                         })
                         .catch(next);
