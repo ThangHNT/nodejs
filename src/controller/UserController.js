@@ -109,56 +109,56 @@ class UserController {
         // =====================================================================================
 
         // dung voi express-fileupload
-        const provider = req.user.provider;
-        var id = req.user.id;
+        // const provider = req.user.provider;
+        // var id = req.user.id;
         
-        User.findOne({id: id,authType: provider}, function(err, user) {
-            if(user){
-                user.username = req.body.username;
-                user.email = req.body.email;
-                user.address = req.body.address;
-                user.dateOfBirth = req.body.dateOfBirth;
-                user.gender = req.body.gender;
-                user.save();
+        // User.findOne({id: id,authType: provider}, function(err, user) {
+        //     if(user){
+        //         user.username = req.body.username;
+        //         user.email = req.body.email;
+        //         user.address = req.body.address;
+        //         user.dateOfBirth = req.body.dateOfBirth;
+        //         user.gender = req.body.gender;
+        //         user.save();
 
-                if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
+        //         if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
                     
-                    Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
-                        if(!img) {
-                            var dataBase64 = req.files.avatar.data.toString("base64");
-                            const buffer = Buffer.from(dataBase64,'base64');
-                            const img = {
-                                name: req.files.avatar.name,
-                                id: req.files.avatar.md5, // lấy id từ hàm băm md5
-                                img : {
-                                    contentType:req.files.avatar.mimetype,
-                                    data:dataBase64,
-                                    image: buffer
-                                }
-                            };
-                            const image = new Img(img);
-                            image.owner = user;
-                            user.avatar = image;
-                            user.save(); image.save();
-                        } else {
-                            img.owner = user; img.save();
-                        }
-                    })
-                    res.render('myAccount', {
-                        user,
-                    })
-                    // res.json(avatar_base64);
+        //             Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
+        //                 if(!img) {
+        //                     var dataBase64 = req.files.avatar.data.toString("base64");
+        //                     const buffer = Buffer.from(dataBase64,'base64');
+        //                     const img = {
+        //                         name: req.files.avatar.name,
+        //                         id: req.files.avatar.md5, // lấy id từ hàm băm md5
+        //                         img : {
+        //                             contentType:req.files.avatar.mimetype,
+        //                             data:dataBase64,
+        //                             image: buffer
+        //                         }
+        //                     };
+        //                     const image = new Img(img);
+        //                     image.owner = user;
+        //                     user.avatar = image;
+        //                     user.save(); image.save();
+        //                 } else {
+        //                     img.owner = user; img.save();
+        //                 }
+        //             })
+        //             res.render('myAccount', {
+        //                 user,
+        //             })
+        //             // res.json(avatar_base64);
 
-                } else {
-                    Img.findOne({owner: user._id}, function(err, img){
-                        res.render('myAccount', {
-                            user,
-                            avatar: img.src
-                        })
-                    });
-                }
-            }
-        })
+        //         } else {
+        //             Img.findOne({owner: user._id}, function(err, img){
+        //                 res.render('myAccount', {
+        //                     user,
+        //                     avatar: img.src
+        //                 })
+        //             });
+        //         }
+        //     }
+        // })
         // res.json(req.body);
     }
 
