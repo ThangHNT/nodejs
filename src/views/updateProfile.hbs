@@ -36,9 +36,9 @@
             <form class="form-update" action = "/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if avatar}}
-                        <img src= "data:image/jpeg;base64,{{avatar}}" class="rounded-circle" alt="avatar">
+                        <img src= "{{avatar}}" class="rounded-circle" alt="avatar">
                         {{else}}
-                            <img src= "{{avatar_base64}}" class="rounded-circle avatar" alt="avatar">
+                            <img src= "data:image/jpeg;base64,{{avatar_base64}}" class="rounded-circle avatar" alt="avatar">
                     {{/if}}
                     
                     <input type="file" accept=".jpg, .png" name ="avatar" class="file-upload">
