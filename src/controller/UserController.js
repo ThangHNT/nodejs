@@ -81,6 +81,7 @@ class UserController {
                 return res.render('updateProfile', {
                     user : component(user),
                     avatar : img.src,
+                    avatar_base64: img.data,
                 })
             })
         })
