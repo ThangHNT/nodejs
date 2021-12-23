@@ -33,7 +33,7 @@
             <h4 style="text-align:center">Thông tin của bạn</h4>
         </div>
         <div class="content-body-update mt-4">
-            <form class="form-update"  method="post" enctype="multipart/form-data">
+            <form class="form-update" action = "/account/uploadData" method="post" enctype="multipart/form-data">
                 <div class="field-update">
                     {{#if avatar}}
                         <img src= "{{avatar}}" class="rounded-circle avatar"  alt="avatar">
@@ -116,15 +116,6 @@
                 
             })
         })
-
-        form.onsubmit = function(e) {
-            e.preventDefault();
-        }
-
-        btnSubmit.onclick = function() {
-            form.action = "/account/uploadData";
-            form.submit();
-        }
 
     })
 </script>
