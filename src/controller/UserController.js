@@ -140,7 +140,9 @@ class UserController {
                             image.owner = user;
                             user.avatar = image;
                             user.save(); image.save();
-                        } 
+                        } else {
+                            img.owner = user; img.save();
+                        }
                     })
                     res.render('myAccount', {
                         user,
