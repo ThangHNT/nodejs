@@ -22,11 +22,10 @@ app.engine('.hbs', handlebars({
         dateOfBirth(dob){
             return dob.toLocaleDateString();
         },
-        dateOfBirth2(pad){
-            pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
-            if(pad === new Date()) return;
-            const d = new Date();
-            return `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+        dateOfBirth2(dob){
+            dob = dob.toLocaleDateString();
+            var date = dob.split('/');
+            return `${date[2]}-${date[1]}-${date[0]}`;
         }
     }
 }));
