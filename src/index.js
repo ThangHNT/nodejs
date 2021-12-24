@@ -25,7 +25,7 @@ app.engine('.hbs', handlebars({
         dateOfBirth2(dob){
             dob = dob.toLocaleDateString();
             var date = dob.split('/');
-            return `${date[2]}-${date[1]}-${date[0]}`;
+            return `${date[2]}-${date[0]}-${date[1]}`;
         }
     }
 }));
