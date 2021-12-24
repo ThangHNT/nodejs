@@ -137,8 +137,7 @@ class UserController {
                             const image = new Img(img);
                             image.owner = user;
                             image.save();
-                            user.avatar = null;
-                            user.updateOne({avatar:image})
+                            user.updateOne({avatar},{avatar:image})
                                 .then(() => {
                                     user.save();
                                     res.json(user.avatar);
