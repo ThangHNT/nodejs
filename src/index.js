@@ -20,10 +20,12 @@ app.engine('.hbs', handlebars({
             return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         },
         dateOfBirth(dob){
-            // if(typeof dob === Date){
-                
-            // }
             return dob.toLocaleDateString();
+        },
+        dateOfBirth2(pad){
+            pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+            const d = new Date();
+            return `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
         }
     }
 }));

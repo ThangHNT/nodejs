@@ -11,15 +11,17 @@
           <label for="dateOfBirth"><strong>Date of birth</strong></label>
           <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
       </form>
-      <button type="submit" id="button" >Try it</button>
+      <button type="button" id="button" >Try it</button>
       
 
       <script>
-          var dob = document.querySelector('#dateOfBirth');
-          var form = document.querySelector('#form');
-          form .onsubmit = (e) => { 
-              e.preventDefault();
-              console.log(dob.value);
+          var dob = document.querySelector('input[type="date"]');
+          var btn = document.querySelector('#button');
+          var date = new Date();
+          const k = date.getTime();
+          btn.onclick = function() {
+            //   console.log(date.getTime());
+            dob.Value = '2021-05-2';
           }
       </script>
 </body>
