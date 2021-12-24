@@ -138,9 +138,12 @@ class UserController {
                             image.owner = user;
                             image.save();
                             user.avatar = null;
-                            user.avatar = image;
-                            user.save();
-                            res.json(user.avatar);
+                            user.updateOne({avatar: null},{avatar:image})
+                                .then(() => {
+                                    user.save();
+                                    res.json(user.avatar);
+                                })
+                                .catch(next);
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
