@@ -136,7 +136,9 @@ class UserController {
                     image.save();
                     Img.findOneAndDelete({owner: user._id}, function(err, img){
                         if(img) {
-                            await user.updateOne({avatar: img},{avatar: image});
+                            user.updateOne({avatar: img},{avatar: image}, (err,user) => {
+                                res.send('da cap nhat');
+                            });
                         }
                         res.send('thanh cong');
                     })
