@@ -50,7 +50,7 @@
                 </div>
                 <div class="field-update mt-4">
                     <label for="gender"><strong>Gender</strong></label>
-                    <select name="gender" value="{{user.gender}}">
+                    <select name="gender" id="select" data="{{user.gender}}">
                         <option> Giới tính </option>
                         <option  value="nam">Nam</option>
                         <option  value="nữ">Nữ</option>
@@ -81,7 +81,9 @@
         const btnSubmit = document.querySelector('#btn-submit');
         const reader = new FileReader();
         const fileUpload = document.querySelector(".file-upload");
-        var imgUrl = '';
+        var select = document.querySelector('#select');
+        let data = select.getAttribute('data');
+        select.value = data.toString();
 
         // xử lý khi chọn avatar => chọn xog thay đổi luôn avatar
         fileUpload.addEventListener("change", (event) => {
