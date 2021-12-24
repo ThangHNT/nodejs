@@ -146,7 +146,9 @@ class UserController {
                             return;
                         });
                     })
-                    res.render('myAccount');
+                    res.render('myAccount', {
+                        avatar_base64: dataBase64,
+                    });
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
                         res.render('myAccount', {
