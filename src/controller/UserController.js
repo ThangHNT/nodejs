@@ -136,13 +136,14 @@ class UserController {
                     image.owner = user;
                     image.save();
                     Img.findOne({owner: user._id}, function(err, img){
-                        if(img) {
-                            User.findOneAndUpdate({avatar: img},{avatar: image});
-                        }
-                        var id = img._id;
-                        Img.findByIdAndDelete({_id:id});
+                        // if(img) {
+                        //     User.findOneAndUpdate({avatar: img},{avatar: image});
+                        // }
+                        // var id = img._id;
+                        // Img.findByIdAndDelete({_id:id});
+                        res.json(img);
                     })
-                    res.render('myAccount');
+                    // res.render('myAccount');
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
                         res.render('myAccount', {
