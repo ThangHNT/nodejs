@@ -137,12 +137,9 @@ class UserController {
                             const image = new Img(img);
                             image.owner = user;
                             image.save();
-                            user.updateOne({avatar},{avatar:image})
-                                .then(() => {
-                                    user.save();
-                                    res.json(user.avatar);
-                                })
-                                .catch(next);
+                            user.avatar = image; 
+                            user.save();
+                            res.json(user.avatar);
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
