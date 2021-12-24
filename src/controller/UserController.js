@@ -121,31 +121,24 @@ class UserController {
                 user.save();
 
                 if(req.files) {         // kiểm tra xem có cập nhật ảnh mới lên ko
-                    Img.findOne({id:req.files.avatar.md5}, function(err, img){     // tìm kiếm ảnh đã có trog db hay chưa
-                        if(!img) {
-                            const dataBase64 = req.files.avatar.data.toString("base64");
-                            const buffer = Buffer.from(dataBase64,'base64');
-                            const img = {
-                                name: req.files.avatar.name,
-                                id: req.files.avatar.md5, // lấy id từ hàm băm md5
-                                img : {
-                                    contentType:req.files.avatar.mimetype,
-                                    data:dataBase64,
-                                    image: buffer
-                                }
-                            };
-                            const image = new Img(img);
-                            image.owner = user;
-                            image.save();
-                            user.avatar = image; 
-                            user.save();
-                            res.json({mess: 'thanh cong'});
-                        } else {
-                            res.render('myAccount', {
-                                user : component(user),
-                                avatar_base64: img.img.data,
-                            })
+                    const dataBase64 = req.files.avatar.data.toString("base64");
+                    const buffer = Buffer.from(dataBase64,'base64');
+                    const img = {
+                        name: req.files.avatar.name,
+                        id: req.files.avatar.md5, // lấy id từ hàm băm md5
+                        img : {
+                            contentType:req.files.avatar.mimetype,
+                            data:dataBase64,
+                            image: buffer
                         }
+                    };
+                    const image = new Img(img);
+                    image.save();
+                    Img.findOneAndDelete({owner: user._id}, function(err, img){
+                        if(img) {
+                            await user.updateOne({avatar: img},{avatar: image});
+                        }
+                        res.send('thanh cong');
                     })
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
