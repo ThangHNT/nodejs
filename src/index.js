@@ -24,6 +24,7 @@ app.engine('.hbs', handlebars({
         },
         dateOfBirth2(pad){
             pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+            if(pad === new Date()) return;
             const d = new Date();
             return `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
         }
