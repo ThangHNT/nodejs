@@ -138,10 +138,10 @@ class UserController {
                     Img.findOne({owner: user._id}, function(err, img){
                         if(img) {
                             User.findOneAndUpdate({avatar: img},{avatar: image}, function(err,user) {
-                                res.send('da cap nhat');
+                                return res.send('da cap nhat');
                             })
                         }
-                        res.send('thanh cong');
+                        return res.send('thanh cong');
                     })
                 } else {
                     Img.findOne({owner: user._id}, function(err, img){
