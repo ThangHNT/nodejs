@@ -139,7 +139,7 @@ class UserController {
                             image.save();
                             user.avatar = image; 
                             user.save();
-                            res.json(user.avatar);
+                            res.json({mess: 'thanh cong'});
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
