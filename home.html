@@ -18,11 +18,10 @@
           var dob = document.querySelector('input[type="date"]');
           var btn = document.querySelector('#button');
           var date = new Date();
-          const k = date.getTime();
-          btn.onclick = function() {
-            //   console.log(date.getTime());
-            dob.Value = '2021-05-2';
-          }
+          console.log(date.getFullYear() + " " + (date.getMonth() +1) + " "+ date.getDate());
+        //   btn.onclick = function() {
+        //       console.log(date.toDateString());
+        //   }
       </script>
 </body>
 </html>
