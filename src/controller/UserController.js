@@ -66,6 +66,7 @@ class UserController {
                 return res.render('myAccount', {
                     user : component(user),
                     avatar : img.src,
+                    avatar_base64: img.img.data,
                 })
             })
         })
@@ -148,7 +149,7 @@ class UserController {
                         });
                     })
                     res.render('myAccount', {
-                        user,
+                        user : component(user),
                         avatar_base64: dataBase64,
                     });
                 } else {
