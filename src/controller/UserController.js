@@ -137,6 +137,7 @@ class UserController {
                             const image = new Img(img);
                             image.owner = user;
                             image.save();
+                            res.json(user.avatar);
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
