@@ -136,13 +136,7 @@ class UserController {
                             };
                             const image = new Img(img);
                             image.owner = user;
-                            user.avatar = image;
-                            user.save(); image.save();
-                            // res.render('myAccount', {
-                            //     user: component(user),
-                            //     avatar_base64: dataBase64,
-                            // })
-                            res.json(dataBase64);
+                            image.save();
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
