@@ -138,10 +138,11 @@ class UserController {
                             image.owner = user;
                             user.avatar = image;
                             user.save(); image.save();
-                            res.render('myAccount', {
-                                user: component(user),
-                                avatar_base64: dataBase64,
-                            })
+                            // res.render('myAccount', {
+                            //     user: component(user),
+                            //     avatar_base64: dataBase64,
+                            // })
+                            res.json(dataBase64);
                         } else {
                             res.render('myAccount', {
                                 user : component(user),
