@@ -7,25 +7,20 @@
     <title>Thang Hoang</title>
 </head>
 <body>
-    <form>
-        Select your favorite fruit:
-        <select id="mySelect" data-id="hello">
-          <option value="apple" >Apple</option>
-          <option value="orange">Orange</option>
-          <option value="pineapple">Pineapple</option>
-          <option value="banana">Banana</option>
-        </select>
+      <form id="form">
+          <label for="dateOfBirth"><strong>Date of birth</strong></label>
+          <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
       </form>
-      <p>Click the button to change the selected fruit to banana.</p>
-      <button type="button" onclick="myFunction()">Try it</button>
+      <button type="submit" id="button" >Try it</button>
       
 
       <script>
-        function myFunction() {
-            document.getElementById("mySelect").value = "banana";
-        }
-        var btn_select = document.getElementById("mySelect");
-        console.log(btn_select.getAttribute('data-id'));
+          var dob = document.querySelector('#dateOfBirth');
+          var form = document.querySelector('#form');
+          form .onsubmit = (e) => { 
+              e.preventDefault();
+              console.log(dob.value);
+          }
       </script>
 </body>
 </html>
