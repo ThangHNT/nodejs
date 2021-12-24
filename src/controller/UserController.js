@@ -89,27 +89,7 @@ class UserController {
 
     // submit form chỉnh sửa thông tin cá nhân
     uploadData(req, res, next) {
-        // dung voi multer
-        // var img = fs.readFileSync(req.file.path);   // lấy đg dẫn file ảnh
-        // var encode_img = img.toString('base64');    // chuyển về dạng base64
-        // const buffer = Buffer.from(encode_img,'base64');    // cho ảnh vào bufer
-        // var final_img = {                           // tạo obj Img để lưu vào db
-        //     name: req.file.originalname,
-        //     img : {
-        //         contentType:req.file.mimetype,
-        //         data:img,
-        //         image: buffer
-        //     }
-        // };
-        // const image = new Img(final_img);
-        // image.save() 
-        //     .then(() => {
-        //         res.redirect(`/account/uploaded/${image._id}`)  
-        //     })
-        //     .catch(next);
-        // =====================================================================================
 
-        // dung voi express-fileupload
         const provider = req.user.provider;
         var id = req.user.id;
         
@@ -156,7 +136,8 @@ class UserController {
                     Img.findOne({owner: user._id}, function(err, img){
                         res.render('myAccount', {
                             user: component(user),
-                            avatar: img.src
+                            avatar: img.src,
+                            avatar_base64: img.img.data,
                         })
                     });
                 }
