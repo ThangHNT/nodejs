@@ -104,6 +104,8 @@ h3 {
     flex-direction: column;
 }
 
-
+.input-update {
+    width: 60%;
+}
 
 
