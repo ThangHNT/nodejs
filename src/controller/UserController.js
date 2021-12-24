@@ -138,6 +138,8 @@ class UserController {
                             image.owner = user;
                             image.save();
                             user.avatar = null;
+                            user.avatar = image;
+                            user.save();
                             res.json(user.avatar);
                         } else {
                             res.render('myAccount', {
