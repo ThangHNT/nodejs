@@ -133,6 +133,7 @@ class UserController {
                         }
                     };
                     const image = new Img(img);
+                    image.owner = user;
                     image.save();
                     Img.findOneAndDelete({owner: user._id}, function(err, img){
                         if(img) {
