@@ -137,7 +137,7 @@ class UserController {
                     image.save();
                     Img.findOne({owner: user._id}, function(err, img){
                         if(img) {
-                            user.findOneAndUpdate({avatar: img},{avatar: image}, function(err,user) {
+                            User.findOneAndUpdate({avatar: img},{avatar: image}, function(err,user) {
                                 res.send('da cap nhat');
                             })
                         }
