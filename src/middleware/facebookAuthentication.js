@@ -52,7 +52,7 @@ function authenticate(app) {
                         id: id, // lấy id từ hàm băm md5
                         img : {
                             contentType:'image/jpeg',
-                            data: '',
+                            data: null,
                         }
                     };
                     const image = new Img(img);
