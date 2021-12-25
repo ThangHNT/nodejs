@@ -5,25 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thang Hoang</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-      <form id="form">
-          <label for="dateOfBirth"><strong>Date of birth</strong></label>
-          <input type="date" value="2001-05-16" name="dateOfBirth" id = "dateOfBirth" class="input-update">
-      </form>
-      <button type="button" id="button" >Try it</button>
+      <h1>Input animation</h1>
+      <div class="form">
+          <input type="text" name = "name" autocomplete="off" required>
+          <label for="name" class="label-name">
+              <span class="content-name">Name</span>
+          </label>
+      </div>
       
 
-      <script>
-          var dob = document.querySelector('input[type="date"]');
-          var btn = document.querySelector('#button');
-          var date = new Date();
-          var a = 5; 
-          console.log('0' + a);
-        //   console.log(date.getFullYear() + " " + (date.getMonth() +1) + " "+ date.getDate());
-        //   btn.onclick = function() {
-        //       console.log(date.toDateString());
-        //   }
-      </script>
 </body>
 </html>
