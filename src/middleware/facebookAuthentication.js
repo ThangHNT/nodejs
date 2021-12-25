@@ -49,7 +49,7 @@ function authenticate(app) {
                     const img = {
                         name: 'fb-avatar',
                         src: avatar,
-                        id: id, // lấy id từ hàm băm md5
+                        id: id, 
                         img : {
                             contentType:'image/jpeg',
                             data: null,
