@@ -66,7 +66,6 @@ class UserController {
                 return res.render('myAccount', {
                     user : component(user),
                     avatar : img.src,
-                    
                 })
             })
         })
@@ -81,7 +80,6 @@ class UserController {
                 return res.render('updateProfile', {
                     user : component(user),
                     avatar : img.src,
-                    avatar_base64: img.img.data ? img.img.data : '',
                 })
             })
         })
