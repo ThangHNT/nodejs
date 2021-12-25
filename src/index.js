@@ -20,6 +20,7 @@ app.engine('.hbs', handlebars({
             return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         },
         dateofbirth(dob){
+            if(!dob) dob = new Date();
             var day = dob.getDate();
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
@@ -28,6 +29,7 @@ app.engine('.hbs', handlebars({
             return ` ${day}/${month}/${year}`;
         },
         dateOfBirth_2(dob){
+            if(!dob) dob =  new Date();
             var day = dob.getDate();
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
