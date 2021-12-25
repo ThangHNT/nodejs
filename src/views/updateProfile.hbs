@@ -58,7 +58,11 @@
                 </div>
                 <div class="field-update mt-4">
                     <label for="dateOfBirth"><strong>Date of birth</strong></label>
-                    <input type="date" value ="{{dateOfBirth_2 user.dateOfBirth}}" name="dateOfBirth" id = "dateOfBirth" class="input-update">
+                    {{#if user.dateOfBirth}}
+                        <input type="date" value ="{{dateOfBirth_2 user.dateOfBirth}}" name="dateOfBirth" id = "dateOfBirth" class="input-update">
+                    {{else}}
+                        <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
+                    {{/if}}    
                 </div>
                 <div class="field-update mt-4">
                     <label for="address"><strong>Address</strong></label>

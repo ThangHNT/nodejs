@@ -57,7 +57,11 @@
                 <div class = "dateofbirth">
                     <p>
                         <i class="fas fa-birthday-cake"></i>
-                        <strong>Date of Birth : </strong> {{dateofbirth user.dateOfBirth}}
+                        {{#if user.dateOfBirth}}
+                            <strong>Date of Birth : </strong> {{dateofbirth user.dateOfBirth}}
+                        {{else}}
+                            <strong>Date of Birth : </strong>
+                        {{/if}}
                     </p>
                 </div>
                 <div class = "address">
