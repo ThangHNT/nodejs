@@ -51,8 +51,8 @@ function authenticate(app) {
                         src: avatar,
                         id: id, // lấy id từ hàm băm md5
                         img : {
-                            contentType:'',
-                            data: null,
+                            contentType:'image/jpeg',
+                            data: '',
                         }
                     };
                     const image = new Img(img);
