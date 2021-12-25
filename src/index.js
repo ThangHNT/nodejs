@@ -20,19 +20,14 @@ app.engine('.hbs', handlebars({
             return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         },
         dateOfBirth(dob){
-            var day = dob.getDate();
-            var month = dob.getMonth() + 1;
-            var year  = dob.getFullYear();
-            if(month < 10) month = '0'+ month;
-            if(day < 10) day = '0' + day;
-            return `${day}-${month}-${year}`;
+            return dob.toLocaleDateString();
         },
         dateOfBirth2(dob){
             var day = dob.getDate();
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
             if(month < 10) month = '0'+ month;
-            if(day < 10) day = '0' + day;
+            if(day < 10) day = '0' + day.toString;
             return `${year}-${month}-${day}`;
         }
     }
