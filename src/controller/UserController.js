@@ -63,11 +63,11 @@ class UserController {
         var id = req.user.id;
         User.findOne({id: id,authType: provider}, function(err, user) {
             Img.findOne({owner: user._id}, function(err, img) {
-                // res.render('myAccount', {
-                //     user : component(user),
-                //     avatar : img.src,
-                // })
-                res.json(img);
+                res.render('myAccount', {
+                    user : component(user),
+                    avatar : img.src,
+                })
+                // res.json(img);
             })
         })
     }
