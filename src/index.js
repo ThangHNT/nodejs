@@ -23,9 +23,11 @@ app.engine('.hbs', handlebars({
             return dob.toLocaleDateString();
         },
         dateOfBirth2(dob){
-            const day = dob.getDate();
-            const month = dob.getMonth() + 1;
-            const year  = dob.getFullYear();
+            var day = dob.getDate();
+            var month = dob.getMonth() + 1;
+            var year  = dob.getFullYear();
+            if(month < 10) month = '0'+ month;
+            if(day < 10) day = '0' + day;
             return `${year}-${month}-${day}`;
         }
     }

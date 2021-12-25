@@ -9,7 +9,7 @@
 <body>
       <form id="form">
           <label for="dateOfBirth"><strong>Date of birth</strong></label>
-          <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
+          <input type="date" value="2001-05-16" name="dateOfBirth" id = "dateOfBirth" class="input-update">
       </form>
       <button type="button" id="button" >Try it</button>
       
@@ -18,7 +18,9 @@
           var dob = document.querySelector('input[type="date"]');
           var btn = document.querySelector('#button');
           var date = new Date();
-          console.log(date.getFullYear() + " " + (date.getMonth() +1) + " "+ date.getDate());
+          var a = 5; 
+          console.log('0' + a);
+        //   console.log(date.getFullYear() + " " + (date.getMonth() +1) + " "+ date.getDate());
         //   btn.onclick = function() {
         //       console.log(date.toDateString());
         //   }
