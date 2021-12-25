@@ -19,10 +19,10 @@ app.engine('.hbs', handlebars({
             const d = new Date();
             return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
         },
-        dateOfBirth(dob){
+        dateofbirth(dob){
             return dob.toLocaleDateString();
         },
-        dateOfBirth2(dob){
+        dateOfBirth_2(dob){
             var day = dob.getDate();
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
