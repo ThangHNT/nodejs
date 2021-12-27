@@ -27,23 +27,83 @@
     </div>
 </nav>
 
-<div class="container mt-4">
-    <div class="row justify-content-between">
-        <div class=" col-sm-6">
-            <h1>{{course.name}}</h1>
-            <iframe width='560' height='315' src='https://www.youtube.com/embed/{{course.videoId}}'
-                title='YouTube video player' frameborder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowfullscreen></iframe>
-            <div class="mt-4">
-                <a href="/home">
-                    <button type="button" class="btn btn-primary">Back</button>
-                </a>
-            </div>
+<div class="container ">
+    <div class="video-course">
+        <h3>{{course.name}}</h3>
+        <iframe width='560' height='315' src='https://www.youtube.com/embed/{{course.videoId}}'
+            title='YouTube video player' frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowfullscreen></iframe>
+        <div class="mt-2">
+            <a href="/home">
+                <button type="button" class="btn btn-primary">Back</button>
+            </a>
         </div>
+    </div>
 
-        <div class="mt-5 col-sm-5">
-            <textarea class="comment" style="width:100%;" placeholder="Comment here"></textarea>
+    <div class="mt-4">
+        <div class="comment-area">
+            <p style="margin-bottom: 0px;">
+                <img class="img-small" src="https://d25tv1xepz39hi.cloudfront.net/2016-01-31/files/1045.jpg" alt="avatar-small">
+                <span><strong>Thang Hoang</strong> </span>
+            </p>
+            <form class="form-comment " method="POST">
+                <div class ="wrapper">
+                    <textarea class="comment" placeholder="Comment here" required></textarea>
+                </div>
+            </form>
+            <div class="comment-content">
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+                <div id="section1">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded",function() {
+        const cmt = document.querySelector('.comment');
+        const contentCmt = cmt.querySelector('.comment-content');
+        cmt.addEventListener("keyup", e => {
+            cmt.style.height = "50px";
+            let scrollHeight = e.target.scrollHeight;
+            cmt.style.height = `${scrollHeight}px`;
+        })
+
+    })
+</script>
