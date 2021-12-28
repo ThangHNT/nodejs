@@ -49,45 +49,30 @@
             </p>
             <form class="form-comment " method="POST">
                 <div class ="wrapper">
-                    <textarea class="comment" placeholder="Comment here" required></textarea>
+                    <textarea class="comment" placeholder="Comment here" maxlength="150" required></textarea>
                 </div>
             </form>
-            <div class="comment-content">
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                </div>
-                <div id="section1">
-                    <h1>Section 1</h1>
-                    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+            <div class="comment-content mt-2">
+                <div class="comment-element">
+                    <div class="comment-content_author_avatar">
+                        <img class="img-small" src="https://d25tv1xepz39hi.cloudfront.net/2016-01-31/files/1045.jpg" alt="avatar-small">
+                    </div>
+                    <div class="comment-content_text">
+                        <div class="comment-content_text_wrapper">
+                            <h6 class="comment-content_author_name">
+                                <strong> thang hoang</strong>
+                            </h6>
+                            <div class="comment-content_text_content">
+                                <p>
+                                    video nay rat hay cam on ban. video nay rat hay cam on ban. video nay rat hay cam on ban.video nay rat hay cam on ban.video nay rat hay cam on ban.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="comment-content_reaction">
+                            <i class="fas fa-thumbs-up reaction-icon "></i>
+                            <i class="fas fa-thumbs-down reaction-icon"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -98,11 +83,18 @@
 <script>
     document.addEventListener("DOMContentLoaded",function() {
         const cmt = document.querySelector('.comment');
-        const contentCmt = cmt.querySelector('.comment-content');
+        const reaction = document.querySelectorAll('.reaction-icon');
         cmt.addEventListener("keyup", e => {
             cmt.style.height = "50px";
             let scrollHeight = e.target.scrollHeight;
             cmt.style.height = `${scrollHeight}px`;
+        })
+        
+        reaction.forEach((like,index) => {
+            like.onclick = function() {
+                this.classList.toggle('primary-color');
+                reaction[1-index].classList.remove('primary-color');
+            }
         })
 
     })

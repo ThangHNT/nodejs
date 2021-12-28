@@ -124,6 +124,7 @@ h3 {
     width: 40px;
     height: 40px;
     border-radius:50%;
+    margin-right: 10px;
 }
 
 .comment-content{
@@ -163,7 +164,7 @@ h3 {
     border-color: #bfbfbf;
     margin-top:8px;
     max-height: 330px;
-    padding-left: 10px;
+    padding: 10px 0 0 10px;
     height: 50px;
 }
 
@@ -177,6 +178,54 @@ h3 {
     width: 0px;
     height: 0px;
 }
+
+
+.comment-element {
+    display:flex;
+    justify-content: content-start;
+}
+
+.comment-content_text{
+    background-color: #f2f3f5;
+    border-radius: 10px;
+}
+
+.comment-content_text_wrapper{
+    padding: 0 10px 0 10px;
+    display:inline-block;
+    width: 100%;
+}
+
+.comment-content_author_name{
+    padding-top: 6px;
+}
+
+
+.comment-content_reaction{
+    width: 100%;
+    background: #fff;
+}
+
+.reaction-icon{
+    padding:0 15px 10px 15px;
+    font-size: 18px;
+}
+
+.reaction-icon:hover{
+    cursor: pointer;
+}
+
+.primary-color{
+    color: #4671EA;
+}
+
+
+
+
+
+
+
+
 
 
 
