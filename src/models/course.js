@@ -12,6 +12,7 @@ const Course = new Schema(
         videoId: { type: String, required: true },
         slug: { type: String, slug:'name' , default: 'unknown', unique: true },
         owner: {type: Schema.Types.ObjectId, ref: 'User'},
+        comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
     },
     {
         timestamps: true,

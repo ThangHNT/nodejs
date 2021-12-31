@@ -1,16 +1,21 @@
 const Course = require('../models/course.js');
-const User = require('../models/user.js');
+const Comment = require('../models/comment.js');
 const { component } = require('../convertToObject.js');
 const {multiComponents} = require('../convertToObject.js');
 class CourseController {
+    // trang chi tiet khoa hoc
     courseDetail(req, res, next) {
-        Course.findOne({ slug: req.params.slug })
-            .then((course) => {
-                res.render('courseDetail', {
-                    course: component(course),
-                });
-            })
-            .catch(next);
+        Course.findOne({ slug: req.params.slug }, (err, course) => {
+            Comment.find({course: req.params.id})
+                .then((comments) => {
+                    res.render('courseDetail', {
+                        course: component(course),
+                        comments: multiComponents(comments)
+                    })
+                    
+                })
+                .catch(next);
+        })
     }
 
     // tao view cho dang khoa hoc

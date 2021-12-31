@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const courseController = require('../controller/CourseController.js');
+const commentsController = require('../controller/CommentsController.js');
 
 router.get('/myCourses/edit/:id',courseController.editCourse);
 router.put('/myCourses/:id',courseController.update);
@@ -11,6 +12,8 @@ router.delete('/delete/:id',courseController.delete);
 router.get('/myCourses', courseController.myCourses);
 router.post('/create/store', courseController.storeCourse);
 router.get('/create', courseController.createCourse);
+router.get('/:slug/:id/storeJSON', commentsController.getJSON);
+router.post('/:slug/comment/:id', commentsController.storeComment);
 router.get('/:slug/:id', courseController.courseDetail);
 
 module.exports = router;
