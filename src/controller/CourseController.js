@@ -18,7 +18,7 @@ class CourseController {
         })
     }
 
-    // tao view cho dang khoa hoc
+    // tao view cho trang dang khoa hoc
     createCourse(req, res, next) {
         res.render('createCourse', {
             userId : req.params.id
@@ -85,12 +85,14 @@ class CourseController {
             .catch(next);
     }
 
+    // xoa khoa hoc va ko khôi phục đc nữa
     deleteForce(req, res, next){
         Course.deleteOne({_id : req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
     }
 
+    // view khóa học đã xóa
     trash(req, res, next){
         const id = req.params.id;
         Course.findDeleted({owner: id})
