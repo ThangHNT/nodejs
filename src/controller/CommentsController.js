@@ -23,6 +23,14 @@ class CommentController {
             })
             .catch(next);
     }
+
+    // xoa comment
+    deleteComment(req, res, next){
+        const commentId = req.params.id;
+        Comment.findOneAndDelete({_id: commentId}, function(err, comment){
+            res.send('thanh cong');
+        })
+    }
 }
 
 module.exports = new CommentController;

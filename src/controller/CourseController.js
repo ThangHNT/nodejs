@@ -12,7 +12,6 @@ class CourseController {
                         course: component(course),
                         comments: multiComponents(comments)
                     })
-                    
                 })
                 .catch(next);
         })

@@ -184,6 +184,7 @@ h3 {
 .comment-element {
     display:flex;
     justify-content: content-start;
+    margin-top:8px;
 }
 
 .comment-content_text{
@@ -220,10 +221,18 @@ h3 {
     color: #4671EA;
 }
 
+.comment-content_text_content p {
+    margin:0 0 5px 0;
+}
 
+.comment-element_delete {
+    margin:16px;
+    cursor: pointer;
+}
 
-
-
+.comment-element_delete i{
+    font-size:18px;
+}
 
 
 

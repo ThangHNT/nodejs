@@ -52,10 +52,10 @@
                     <textarea type="text" class="comment" name="comment" placeholder="Comment here" maxlength="150" required ></textarea>
                 </div>
             </form>
-            <div class="comment-content mt-2">
+            <div class="comment-content mt-1">
                 {{#if comments}}
                 {{#each comments}}
-                <div class="comment-element">
+                <div class="comment-element item-{{this._id}}">
                     <div class="comment-content_author_avatar">
                         <img class="img-small" src="https://d25tv1xepz39hi.cloudfront.net/2016-01-31/files/1045.jpg" alt="avatar-small">
                     </div>
@@ -70,10 +70,13 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="comment-content_reaction">
+                        {{!-- <div class="comment-content_reaction">
                             <i class="fas fa-thumbs-up reaction like-icon "></i>
                             <i class="fas fa-thumbs-down reaction dislike-icon"></i>
-                        </div>
+                        </div> --}}
+                    </div>
+                    <div class="comment-element_delete">
+                        <i class="far fa-trash-alt trash" data-id="{{this._id}}" ></i>
                     </div>
                 </div>
                 {{/each}}
@@ -85,116 +88,150 @@
 
 {{!--  ============================================================ SCRIPT ============================================== --}}
 <script>
-    document.addEventListener("DOMContentLoaded",function() {
-        const comment = document.querySelector('.comment');
-        var reaction = document.querySelectorAll('.reaction');
-        const form_comment = document.querySelector('.form-comment');
-        const comment_content = document.querySelector('.comment-content');
-        
-        form_comment.onsubmit = (e) => {
-            e.preventDefault();
-        }
+    const comment = document.querySelector('.comment');
+    var reaction = document.querySelectorAll('.reaction');
+    const form_comment = document.querySelector('.form-comment');
+    const comment_content = document.querySelector('.comment-content');
+    {{!-- const trash = document.querySelectorAll('.trash'); --}}
 
-        var shiftkey = 0;
-        var url = form_comment.action.toString();
-        var url2 = url.replace('/comment','') + '/storeJSON';
-        comment.addEventListener("keydown", e => {
-            if(e.shiftKey) shiftkey = 16;
-            else shiftkey = 0;
-            if(e.which === 13 && shiftkey !== 16) {
-                e.preventDefault();
-                const data = {
-                    content: comment.value
-                }
-                let promise = Promise.resolve();
-                promise
-                    .then(() =>{
-                        sendComment(url,data);
-                        return new Promise((resolve, reject) =>{
-                            setTimeout(resolve,100);
-                        })
+    form_comment.onsubmit = (e) => {
+        e.preventDefault();
+    }
+
+    var shiftkey = 0;
+    var url = form_comment.action.toString();
+    var url2 = url.replace('/comment','') + '/storeJSON';
+    comment.addEventListener("keydown", e => {
+        if(e.shiftKey) shiftkey = 16;
+        else shiftkey = 0;
+        if(e.which === 13 && shiftkey !== 16) {
+            e.preventDefault();
+            const data = {
+                content: comment.value
+            }
+            let promise = Promise.resolve();
+            promise
+                .then(() =>{
+                    sendComment(url,data);
+                    return new Promise((resolve, reject) =>{
+                        setTimeout(resolve,100);
                     })
-                    .then(() => {
-                        getComment(url2);
+                })
+                .then(() => {
+                    getComment(url2);
+                })
+                .catch(() => {
+                    console.log('co loi');
+                })
+            comment.value = '';
+        }
+    })
+    // call API và lưu vào db, =============================== send comment ============================
+    function sendComment(url,data){
+        var option = {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) 
+        };
+        fetch(url,option)
+            .then(function(response){
+                response.json();    
+            })
+            .catch(() =>{
+                console.log('co loi')
+            })
+    }
+    // ================================ lấy comment từ db và hiển thị =================================================
+    function getComment(url){
+        fetch(url)
+            .then(function(response){
+                return response.json(); // chuyen ve dang json
+            })
+            .then(function(comments) {
+                var htmls = comments.map((comment,index) => {
+                        return `<div class="comment-element item-${comment._id}">
+                            <div class="comment-content_author_avatar">
+                                <img class="img-small" src="https://d25tv1xepz39hi.cloudfront.net/2016-01-31/files/1045.jpg" alt="avatar-small">
+                            </div>
+                            <div class="comment-content_text">
+                                <div class="comment-content_text_wrapper">
+                                    <h6 class="comment-content_author_name">
+                                        <strong>Thang Hoang</strong>
+                                    </h6>
+                                    <div class="comment-content_text_content">
+                                        <p class="">
+                                            ${comment.content}
+                                        </p>
+                                    </div>
+                                </div>
+                                {{!-- <div class="comment-content_reaction">
+                                    <i class="fas fa-thumbs-up reaction like-icon "></i>
+                                    <i class="fas fa-thumbs-down reaction dislike-icon"></i>
+                                </div> --}}
+                            </div>
+                            <div class="comment-element_delete">
+                                <i class="far fa-trash-alt trash" data-id="${comment._id}"></i>
+                            </div>
+                        </div>`;
+                })
+                comment_content.innerHTML = htmls.join('');;
+            })
+            .then(() => {
+                trash = document.querySelectorAll('.trash');   // cập nhật số lượng ptu trash
+                deleteComment();     // gọi hàm xử lý xóa comment mới tải từ db
+            })
+            .catch(error => {
+                console.log('loi');
+            })
+    } 
+
+    //===================== chức năng xóa comment ===========================================================
+    var comment_element;
+    var trash ;
+    function deleteComment(){
+        trash = document.querySelectorAll('.trash');
+        let id = '';
+        let url_delete = '';
+        var option = {
+            method: "DELETE",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+        };
+        trash.forEach((element,index) => {
+            element.onclick = function(e){
+                id = this.getAttribute('data-id').toString();
+                url_delete = `/courses/comment/${id}/delete`;
+                fetch(url_delete,option)
+                    .then(function(){
+                        comment_element = document.querySelector('.item-'+id);
+                        if(comment_element){
+                            comment_element.remove();   // loại bỏ element comment khỏi DOM
+                        }
                     })
-                    .catch(() => {
-                        console.log('co loi');
-                    })
-                comment.value = '';
+                    .catch(() => {console.log('co loi')})
             }
         })
-        // call API và lưu vào db
-        function sendComment(url,data){
-            var option = {
-                method: "POST",
-                headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: JSON.stringify(data) 
-            };
-            fetch(url,option)
-                .then(function(response){
-                    response.json();    
-                })
-                .catch(() =>{
-                    console.log('co loi')
-                })
-        }
-        // tải data comment từ db
-        function getComment(url){
-            fetch(url)
-                .then(function(response){
-                    return response.json(); // chuyen ve dang json
-                })
-                .then(function(comments) {
-                    var htmls = comments.map((comment,index) => {
-                           return `<div class="comment-element">
-                                <div class="comment-content_author_avatar">
-                                    <img class="img-small" src="https://d25tv1xepz39hi.cloudfront.net/2016-01-31/files/1045.jpg" alt="avatar-small">
-                                </div>
-                                <div class="comment-content_text">
-                                    <div class="comment-content_text_wrapper">
-                                        <h6 class="comment-content_author_name">
-                                            <strong>Thang Hoang</strong>
-                                        </h6>
-                                        <div class="comment-content_text_content">
-                                            <p class="">
-                                                ${comment.content}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="comment-content_reaction">
-                                        <i class="fas fa-thumbs-up reaction like-icon "></i>
-                                        <i class="fas fa-thumbs-down reaction dislike-icon"></i>
-                                    </div>
-                                </div>
-                            </div>`;
-                    })
-                    comment_content.innerHTML = htmls.join('');;
-                })
-                .catch(error => {
-                    console.log('loi');
-                })
-        } 
+    }
+    deleteComment();
+    // =====================================================================================================
 
-        comment.addEventListener("keyup", e => {
-            comment.style.height = "50px";
-            let scrollHeight = e.target.scrollHeight;
-            comment.style.height = `${scrollHeight}px`;
-        })
-        
-        function checkLike(){
-            reaction.forEach(function(react,index) {
-                react.onclick = function(e) {
-                    this.classList.toggle('primary-color');
-                    if(index %2 == 0) reaction[index+1].classList.remove('primary-color');
-                    else reaction[index-1].classList.remove('primary-color');
-                }
-            })
-        }
-        checkLike();
-        
-
+    comment.addEventListener("keyup", e => {
+        comment.style.height = "50px";
+        let scrollHeight = e.target.scrollHeight;
+        comment.style.height = `${scrollHeight}px`;
     })
+    
+    function checkLike(){  // like action
+        reaction.forEach(function(react,index) {
+            react.onclick = function(e) {
+                this.classList.toggle('primary-color');
+                if(index %2 == 0) reaction[index+1].classList.remove('primary-color');
+                else reaction[index-1].classList.remove('primary-color');
+            }
+        })
+    }
+    
 </script>

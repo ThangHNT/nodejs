@@ -14,6 +14,7 @@ router.post('/create/store', courseController.storeCourse);     // luu khoa hoc 
 router.get('/create', courseController.createCourse);           // tao view cho trang dang khoa hoc
 router.get('/:slug/:id/storeJSON', commentsController.getJSON); // chuyển đổi data comment thành json để tạo view
 router.post('/:slug/comment/:id', commentsController.storeComment); // store comment
+router.delete('/comment/:id/delete', commentsController.deleteComment); // delete comment
 router.get('/:slug/:id', courseController.courseDetail);
 
 module.exports = router;
