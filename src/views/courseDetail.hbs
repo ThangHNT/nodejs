@@ -94,7 +94,6 @@
     var reaction = document.querySelectorAll('.reaction');
     const form_comment = document.querySelector('.form-comment');
     const comment_content = document.querySelector('.comment-content');
-    {{!-- const trash = document.querySelectorAll('.trash'); --}}
 
     form_comment.onsubmit = (e) => {
         e.preventDefault();
@@ -108,24 +107,27 @@
         else shiftkey = 0;
         if(e.which === 13 && shiftkey !== 16) {
             e.preventDefault();
+            let textContent = comment.value;
             const data = {
-                content: comment.value
+                content: textContent
             }
             let promise = Promise.resolve();
-            promise
-                .then(() =>{
-                    sendComment(url,data);
-                    return new Promise((resolve, reject) =>{
-                        setTimeout(resolve,100);
+            if(textContent.length > 0 && textContent !== '\n') {
+                promise
+                    .then(() =>{
+                        sendComment(url,data);
+                        return new Promise((resolve, reject) =>{
+                            setTimeout(resolve,100);
+                        })
                     })
-                })
-                .then(() => {
-                    getComment(url2);
-                })
-                .catch(() => {
-                    console.log('co loi');
-                })
-            comment.value = '';
+                    .then(() => {
+                        getComment(url2);
+                    })
+                    .catch(() => {
+                        console.log('co loi');
+                    })
+                comment.value = '';
+            }
         }
     })
     // call API và lưu vào db, =============================== send comment ============================
