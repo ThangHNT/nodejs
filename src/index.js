@@ -22,7 +22,7 @@ app.engine('.hbs', handlebars({
             var minute = date.getMinutes();
             if(month < 10) month = '0'+ month;
             if(day < 10) day = '0' + day.toString;
-            return `${minute}:${hour} ${day}/${month}/${year}`;
+            return `${hour}:${minute} ${day}/${month}/${year}`;
         },
         dateofbirth(dob){
             var day = dob.getDate();
