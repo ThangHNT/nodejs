@@ -111,8 +111,9 @@
             const data = {
                 content: textContent
             }
-            let promise = Promise.resolve();
-            if(textContent.length > 0 && textContent !== '\n') {
+            let parttern = /[^\n]/g;
+            if(textContent.length > 0 && textContent.search(parttern) !== -1) {
+                let promise = Promise.resolve();
                 promise
                     .then(() =>{
                         sendComment(url,data);
