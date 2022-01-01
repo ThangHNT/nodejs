@@ -19,6 +19,9 @@ class CommentController {
     getJSON(req, res, next){
         Comment.find({course: req.params.id})
             .then((comments) => {
+                comments.map((comment) =>{
+                    comment.content = comment.content.replace(/\n/g,'<br>');
+                })
                 res.json(comments);
             })
             .catch(next);

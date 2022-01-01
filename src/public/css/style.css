@@ -165,7 +165,7 @@ h3 {
     border-color: #bfbfbf;
     margin-top:8px;
     max-height: 330px;
-    padding: 10px 0 0 10px;
+    padding: 10px 20px 0 10px;
     height: 50px;
 }
 
@@ -223,6 +223,12 @@ h3 {
 
 .comment-content_text_content p {
     margin:0 0 5px 0;
+    max-width: 600px;
+}
+
+.max-lines {
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .comment-element_delete {
