@@ -14,10 +14,15 @@ app.engine('.hbs', handlebars({
     extname: '.hbs',
     helpers: {
         sum(a, b) { return a + b; },
-        getTimestamp(pad) {
-            pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
-            const d = new Date();
-            return `${pad(d.getHours())}:${pad(d.getMinutes())} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${pad(d.getFullYear(), 4)}`;
+        getTimestamp(date) {
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year  = date.getFullYear();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            if(month < 10) month = '0'+ month;
+            if(day < 10) day = '0' + day.toString;
+            return `${minute}:${hour} ${day}/${month}/${year}`;
         },
         dateofbirth(dob){
             var day = dob.getDate();
