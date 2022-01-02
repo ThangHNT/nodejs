@@ -27,7 +27,6 @@ class CourseController {
 
     // luu khoa hoc moi
     storeCourse(req, res, next){
-
         req.body.img = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const course = new Course(req.body);
         const userId = req.params.id;
