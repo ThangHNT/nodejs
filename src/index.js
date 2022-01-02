@@ -27,7 +27,7 @@ app.engine('.hbs', handlebars({
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
             if(month < 10) month = '0'+ month;
-            if(day < 10) day = '0' + day.toString;
+            if(day < 10) day = '0' + day;
             return ` ${day}/${month}/${year}`;
         },
         dateOfBirth_2(dob){
@@ -35,7 +35,7 @@ app.engine('.hbs', handlebars({
             var month = dob.getMonth() + 1;
             var year  = dob.getFullYear();
             if(month < 10) month = '0'+ month;
-            if(day < 10) day = '0' + day.toString;
+            if(day < 10) day = '0' + day;
             return `${year}-${month}-${day}`;
         }
     }
