@@ -18,9 +18,7 @@ app.engine('.hbs', handlebars({
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var year  = date.getFullYear();
-            var hour = date.getHours();
-            var minute = date.getMinutes();
-            return `${hour}:${minute} ${day}/${month}/${year}`;
+            return `${day}/${month}/${year}`;
         },
         dateofbirth(dob){
             var day = dob.getDate();
