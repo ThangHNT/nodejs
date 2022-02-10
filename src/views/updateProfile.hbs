@@ -62,7 +62,7 @@
                         <input type="date" value ="{{dateOfBirth_2 user.dateOfBirth}}" name="dateOfBirth" id = "dateOfBirth" class="input-update">
                     {{else}}
                         <input type="date" name="dateOfBirth" id = "dateOfBirth" class="input-update">
-                    {{/if}}    
+                    {{/if}}
                 </div>
                 <div class="field-update mt-4">
                     <label for="address"><strong>Address</strong></label>
@@ -120,7 +120,6 @@
                 const blob = b64toBlob(img, 'image/jpeg');
                 const blobUrl = URL.createObjectURL(blob);  // tạo url mới 
                 anh.src = blobUrl;
-                
             })
         })
 
