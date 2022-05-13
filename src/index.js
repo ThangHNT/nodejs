@@ -8,6 +8,8 @@ const ggAthentication = require('./middleware/googleAuthentication.js');
 const path = require('path');
 const handlebars = require('express-handlebars');
 const upload = require('express-fileupload');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 
 app.engine('.hbs', handlebars({
@@ -62,9 +64,20 @@ app.use(upload());
 // connect();
 //-----------------------------------------------
 
-fbAuthentication(app);
-ggAthentication(app);
-route(app);
-app.listen(port, () => {
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+})
+
+io.on('connection',(socket) => {
+    console.log('user conneted');
+    socket.on('onchat', data => {
+        console.log({data});
+    })
+})
+
+// fbAuthentication(app);
+// ggAthentication(app);
+// route(app);
+server.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
 })

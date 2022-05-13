@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./cam.js"></script>
+</head>
+<body>
+    <!-- <input type="file" accept="image/*;capture=camera"> -->
+    <device type="media" onchange="update(this.data)"></device>
+    <video autoplay></video>
+    <img class="img" src="" alt="">
+    <button class="btn">click me</button>
+    
+</body>
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+    function update(stream) {
+        document.querySelector('video').src = stream.url;
+    }
+    function hasGetUserMedia() {
+        return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    }
+    if (hasGetUserMedia()) {
+        console.log('thanh cong');
+    } else {
+        alert("getUserMedia() is not supported by your browser");
+    }
+    const constraints = {
+        video: true,
+    };
+    const video = document.querySelector("video");
+
+    const canvas = document.createElement("canvas");
+    const img = $('.img');
+    const btn = $('.btn');
+    btn.onclick = function () {
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+            video.srcObject = stream;
+        })
+        .then(() => {
+            setTimeout(function(){
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext("2d").drawImage(video, 0, 0);
+                img.src = canvas.toDataURL("image/webp");
+                btn.disabled = true;
+                console.log(img.src);
+            },5000);
+        })
+        .catch(function (err) {
+            alert('Bạn chưa cho phép truy cập camera');
+        });
+
+    }
+</script>
+
+</html>
