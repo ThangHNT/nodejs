@@ -21,7 +21,6 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "build": "src/index.js",
     "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
