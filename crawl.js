@@ -1,22 +1,19 @@
 const puppeteer = require('puppeteer');
 
-(async () => {
-    const cookie = {
-        name: 'c_user',
-        value: '100012675420650', // replace this!
-        domain: 'facebook.com',
-        url: 'https://facebook.com',
-        path: '/',
-        httpOnly: true,
-        secure: true,
-      };
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+(async() => {
+    const browser = await puppeteer.launch({headless:false});
+    const page = await browser.newPage();
+    await page.goto('https://kenh14.vn');
 
-  await page.setCookie(cookie);
-  
-  await page.goto('https://facebook.com');
-  await page.screenshot({ path: 'example.png'})
-
-  await browser.close();
-})()
+    const articles = await page.evaluate(() => {
+        let titleLinks = document.querySelectorAll('h3.knswli-title > a');
+        titleLinks = [...titleLinks];
+        let articles = titleLinks.map(link => ({
+            title: link.getAttribute('title'),
+            url: link.getAttribute('href')
+        }));
+        return articles;
+    });
+    console.log(articles);
+    await browser.close();
+})();

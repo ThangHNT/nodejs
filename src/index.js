@@ -64,17 +64,6 @@ app.use(upload());
 // connect();
 //-----------------------------------------------
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-})
-
-io.on('connection',(socket) => {
-    console.log('user conneted');
-    socket.on('onchat', data => {
-        console.log({data});
-    })
-})
-
 // fbAuthentication(app);
 // ggAthentication(app);
 // route(app);
