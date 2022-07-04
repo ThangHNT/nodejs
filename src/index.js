@@ -64,9 +64,9 @@ app.use(upload());
 // connect();
 //-----------------------------------------------
 
-// fbAuthentication(app);
-// ggAthentication(app);
-// route(app);
+fbAuthentication(app);
+ggAthentication(app);
+route(app);
 server.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
 })
